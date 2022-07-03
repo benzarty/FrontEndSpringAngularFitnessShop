@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   //storing and retriving data from local storage
 
-  constructor() { }
+  constructor(private router:Router) { }
   public setRoles(roles: []){
     localStorage.setItem("roles",JSON.stringify(roles))  //bech converti array to string
 
@@ -27,6 +28,8 @@ export class AuthService {
   
     public clear() {
       localStorage.clear();
+      this.router.navigate(['/Home']);
+
     }
   
     public isLoggedIn() {

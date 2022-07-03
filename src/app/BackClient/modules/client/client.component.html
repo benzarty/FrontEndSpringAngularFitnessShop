@@ -1,0 +1,186 @@
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+      <!-- begin row -->
+    
+  
+  
+      <div class="row">
+        <div class="col-12">
+            <div class="card card-statistics clients-contant">
+                <div class="card-header">
+                    <div class="d-xxs-flex justify-content-between align-items-center">
+                        <div class="card-heading">
+                            <h4 class="card-title">Clients List </h4>
+                        </div>
+                        
+
+
+                        <div class="mt-xxs-0 mt-3 btn-group btn-group-toggle" >
+                            <a (click)="clickAddButtonTest()" class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
+                                Add New User
+                              </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body py-0 table-responsive">
+                    <table class="table clients-contant-table mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col">user First Name && Last Name</th>
+
+                                <th scope="col">UserName</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+
+                                <th scope="col">Picture</th>
+
+                                <th scope="col">Roles</th>
+                                <th scope="col">Active</th>
+
+
+                                <th scope="col">Edit & Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let c of listUsers ;let i = index; let f=first">
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <!-- <div class="bg-img mr-4">
+                                          
+                                            <img src="assets/assets/img/avtar/01.jpg" class="img-fluid" alt="Clients-01">
+                                        </div> -->
+                                        <p class="font-weight-bold">{{c.userFirstName +" "+ c.userLastName}}</p>
+                                    </div>
+                                </td>
+                                <td>{{c.userName}}</td>
+                                <td>{{c.email}}</td>
+                                <td>{{c.phone}}</td>
+                                <td>{{c.picture}}</td>
+                                <td  *ngFor="let c of c.role">
+                                {{c.roleName}}
+                                </td>
+
+
+                                <td *ngIf="c.active==true"><a  class="dot"></a><span>Active</span></td>
+                                 <td *ngIf="c.active==false"><a class="dot bg-danger"></a><span>Non Active</span></td> 
+                                <td>
+                                    <a (click)="EditUser(c)"  class="btn btn-icon btn-outline-primary btn-round mr-2 mb-2 mb-sm-0 " data-toggle="modal" data-target="#exampleModal"><i class="ti ti-pencil"></i></a>
+                                    <a (click)="goToDeleteUsers(c.userName)"  class="btn btn-icon btn-outline-danger btn-round" ><i class="ti ti-close"></i></a>
+                               
+                                </td>
+                            </tr> 
+                        </ng-container>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+  
+  
+  
+  
+  
+  
+  
+      </div>
+  
+   
+  
+  </div>
+
+
+
+<!-- add  reactive user  -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New User Form : </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formValue">
+
+          <div class="modal-body">
+
+              <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">First Name :</label>
+                  <input type="text" class="form-control" formControlName="userFirstName" id="userFirstName"
+                      placeholder="Enter your username">
+              </div>
+
+              <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Last Name :</label>
+                  <input type="text" class="form-control" formControlName="userLastName" id="userLastName"
+                      placeholder="Enter your username">
+              </div>
+
+
+
+
+              <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">User Name:</label>
+                  <input type="text" class="form-control" formControlName="userName" id="userName"
+                      placeholder="Enter your username">
+              </div>
+
+              <div class="form-group">
+                  <label for="Userpassword" class="col-form-label">Password :</label>
+                  <input type="password" class="form-control" formControlName="userPassword" id="userPassword"
+                      placeholder="Enter your userPassword">
+              </div>
+
+
+              <div class="form-group">
+                <label for="Userpassword" class="col-form-label">Phone :</label>
+                <input type="text" class="form-control" formControlName="phone" id="phone"
+                    placeholder="Enter your Phone">
+            </div>
+
+            <div class="form-group">
+              <label for="Userpassword" class="col-form-label">Active :</label>
+              <select class="custom-select" formControlName="active" id="active" >
+                <option value="true" >Active</option>
+                <option value="false" selected>Not active</option>
+
+                
+              </select>
+          </div>
+
+          <div class="form-group">
+            <label for="Userpassword" class="col-form-label">Picture :</label>
+            <input type="text" class="form-control" formControlName="picture" id="picture"
+                placeholder="Enter your Picture">
+        </div>
+        <div class="form-group">
+          <label for="Userpassword" class="col-form-label">Email :</label>
+          <input type="text" class="form-control" formControlName="email" id="email"
+              placeholder="Enter your Email">
+      </div>
+
+
+
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-dark" data-dismiss="modal" id="cancel">Close</button>
+              <input *ngIf="showaddButton" (click)="AddUserAdminReactive()" [disabled]="formValue.invalid" type="submit" class="btn btn-danger" value="Add New User">
+              <input *ngIf="showupdateButton" (click)="UpdateUsergo()" type="submit" class="btn btn-danger" value="Update">
+
+          </div>
+      </form>
+
+      </div>
+  
+    </div>
+  </div>
+</div>
+
+
+

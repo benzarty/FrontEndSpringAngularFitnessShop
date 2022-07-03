@@ -4,7 +4,7 @@ import { AuthGuard } from './Auth/auth.guard';
 import { DashboardComponent } from './BackClient/dashboard/dashboard.component';
 import { LayoutComponent } from './Backclient/dashboard/layout/layout.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './FrontEndClient/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -14,7 +14,11 @@ const routes: Routes = [
     path: 'DashBoard',
     component: DashboardComponent,
     children: [
-      { path: '', component: LayoutComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } }]
+    //  { path: '', component: LayoutComponent, canActivate: [AuthGuard], data: { roles: ['Admin'] } }]
+    {
+      path: '', loadChildren:
+        () => import('./BackClient/modules/admin.module').then(m => m.AdminModule)
+    } ]
   },
 
   { path: 'forbidden', component: ForbiddenComponent },

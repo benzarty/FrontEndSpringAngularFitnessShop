@@ -1,5 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { User } from '../Models/User';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -22,6 +25,12 @@ export class UserService {
     });
   }
 
+  public Register(loginData:any) {
+    return this.httpclient.post(this.PATH_OF_API + '/registerNewUser', loginData, {
+      headers: this.requestHeader,
+    });
+  }
+
   public roleMatch(allowedRoles) {
     let isMatch = false;
     const userRoles: any = this.userAuthService.getRoles();
@@ -40,10 +49,28 @@ export class UserService {
   }
 
 
-  public forAdmin() {
-    return this.httpclient.get(this.PATH_OF_API + '/forAdmin', {
-      responseType: 'text',
+
+  public GetAllUsers() : Observable<User[]>{
+    return this.httpclient.get<User[]>(environment.URL + '/retrieve-all-users', {
+      responseType: 'json',
     });
   }
+  public AddUserAdminSide(user:User) : Observable<User>{
+    return this.httpclient.post<User>(environment.URL + '/add-user',user, {
+      responseType: 'json',
+    });
+  }
+
+  deleteUserById(id: String): Observable<any> {
+    return this.httpclient.delete<any>(environment.URL +'/remove-user/'+id);
+
+  }
+
+    updateUser(user: User): Observable<User>{
+    return this.httpclient.put<User>(environment.URL +'/modify-user',user,{
+      responseType: 'json',
+    });
+  }
+
 
 }

@@ -36,7 +36,7 @@
                                         <li><a *ngIf="isLoggedIn() && userService.roleMatch(['Admin']) " [routerLink]="['/DashBoard']">Dashboard</a></li>
 
                                         <a *ngIf="! isLoggedIn()" id="navigation" class="btn header-btn text-white btn-lg"
-                                            data-toggle="modal" data-target="#exampleModal">Became a member</a>
+                                            data-toggle="modal" data-target="#exampleModal2">Became a member</a>
                                         <a *ngIf="! isLoggedIn()" id="navigation"
                                             class="btn header-btn text-white btn-lg" data-toggle="modal"
                                             data-target="#exampleModal">Login</a>
@@ -992,7 +992,7 @@
 
 
 
-<!-- Modal -->
+<!-- Modal Login -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -1008,21 +1008,95 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">User Name:</label>
-                        <input type="text" class="form-control" ngModel name="userName" id="userName"
+                        <input type="text" class="form-control" ngModel name="userName" id="userName" required
                             placeholder="Enter your username">
                     </div>
 
                     <div class="form-group">
                         <label for="Userpassword" class="col-form-label">Password :</label>
-                        <input type="text" class="form-control" ngModel name="userPassword" id="userPassword"
+                        <input type="password" class="form-control" ngModel name="userPassword" id="userPassword" required
                             placeholder="Enter your userPassword">
                     </div>
 
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
-                    <input type="submit" class="btn btn-danger" value="Login">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal" id="cancel">Close</button>
+                    <input type="submit" [disabled]="f.invalid" class="btn btn-danger" value="Login">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Register -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title font-italic" id="exampleModalLabel">Register in our Website hir : </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form #t="ngForm" (ngSubmit)="Register(t)">
+
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">First Name :</label>
+                        <input type="text" class="form-control" ngModel name="userFirstName" id="userFirstName" required
+                            placeholder="Enter your username">
+                    </div>
+      
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Last Name :</label>
+                        <input type="text" class="form-control" ngModel name="userLastName" id="userLastName" required
+                            placeholder="Enter your username">
+                    </div>
+      
+      
+      
+      
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">User Name:</label>
+                        <input type="text" class="form-control" ngModel name="userName" id="userName" required
+                            placeholder="Enter your username">
+                    </div>
+      
+                    <div class="form-group">
+                        <label for="Userpassword" class="col-form-label">Password :</label>
+                        <input type="password" class="form-control" ngModel name="userPassword" id="userPassword" required
+                            placeholder="Enter your userPassword">
+                    </div>
+      
+      
+                    <div class="form-group">
+                      <label for="Userpassword" class="col-form-label">Phone :</label>
+                      <input type="text" class="form-control" ngModel name="phone" id="phone" required
+                          placeholder="Enter your Phone">
+                  </div>
+      
+                <div class="form-group">
+                  <label for="Userpassword" class="col-form-label">Picture :</label>
+                  <input type="text" class="form-control" ngModel name="picture" id="picture" required
+                      placeholder="Enter your Picture">
+              </div>
+              <div class="form-group">
+                <label for="Userpassword" class="col-form-label">Email :</label>
+                <input type="text" class="form-control" ngModel name="email" id="email" required
+                    placeholder="Enter your Email">
+            </div>
+      
+      
+      
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark" data-dismiss="modal" id="cancel2">Close</button>
+                    <input type="submit" [disabled]="t.invalid" class="btn btn-danger" value="Register">
                 </div>
             </form>
 

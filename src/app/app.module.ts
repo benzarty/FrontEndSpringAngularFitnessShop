@@ -3,9 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './BackClient/dashboard/dashboard.component';
-import { FooterComponent } from './home/footer/footer.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -16,7 +14,13 @@ import { UserService } from './Services/user.service';
 import { LayoutComponent } from './Backclient/dashboard/layout/layout.component';
 import { NavbarComponent } from './BackClient/dashboard/navbar/navbar.component';
 import { SidbarComponent } from './BackClient/dashboard/sidbar/sidbar.component';
-import { Footer2Component } from './Backclient/dashboard/footer2/footer2.component';
+import { AdminModule } from './BackClient/modules/admin.module';
+import { EndComponent } from './BackClient/dashboard/end/end.component';
+import { HomeComponent } from './FrontEndClient/home.component';
+import { FooterComponent } from './FrontEndClient/footer/footer.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 
@@ -27,16 +31,21 @@ import { Footer2Component } from './Backclient/dashboard/footer2/footer2.compone
     DashboardComponent,
     FooterComponent,
     ForbiddenComponent,
-    LayoutComponent,
     NavbarComponent,
     SidbarComponent,
-    Footer2Component  ],
+    EndComponent,
+    
+    
+      ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    AdminModule,
+    BrowserAnimationsModule,  //yetketbou ken houni héthom
+    ToastrModule.forRoot(),  //yetketbou ken houni héthom
   ],
   providers: [AuthGuard,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},UserService], 
   //provide http interceptor fil class authinterceptor w nesta3melouh fil userservice
