@@ -2,10 +2,56 @@
     <!-- begin container-fluid -->
     <div class="container-fluid">
       <!-- begin row -->
-    
+      <div class="row">
+        <div class="col-md-12 m-b-30">
+          <!-- begin page title -->
+          <div class="d-block d-sm-flex flex-nowrap align-items-center">
   
+  
+            <div class="page-title mb-2 mb-sm-0">
+  
+            </div>
+            <div class="ml-auto d-flex align-items-center">
+              <nav>
+                <ol class="breadcrumb p-0 m-b-0">
+                  <li class="breadcrumb-item">
+                    <a href="index.html"><i class="ti ti-home"></i></a>
+                  </li>
+                  <li class="breadcrumb-item">
+                    Pages
+                  </li>
+                  <li class="breadcrumb-item active text-primary" aria-current="page">Client</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <!-- end page title -->
+        </div>
+      </div>
   
       <div class="row">
+
+        <div class="search-wrapper">
+
+            <div class="search-content">
+              <form>
+                <div class="form-group">
+    
+                  <input type="text" 
+                       
+                       class="form-control autocomplete" placeholder="Search Here" name="search"
+                       [(ngModel)]="searchtext"
+                       autofocus="autofocus" >
+    
+                  <div id='button-holder'>
+    
+                  </div>
+                  
+    
+                </div>
+              </form>
+            </div>
+          </div>
         <div class="col-12">
             <div class="card card-statistics clients-contant">
                 <div class="card-header">
@@ -43,7 +89,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <ng-container *ngFor="let c of listUsers ;let i = index; let f=first">
+                            <ng-container *ngFor="let c of listUsers | filter : searchtext">
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">

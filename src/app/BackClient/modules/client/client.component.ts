@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./client.component.css']
 })
 export class ClientComponent implements OnInit, OnDestroy {
+  searchtext:any;
   formValue !: FormGroup;
   userObject: User;
   showaddButton: boolean;

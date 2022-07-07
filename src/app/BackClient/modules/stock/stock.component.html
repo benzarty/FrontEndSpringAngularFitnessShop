@@ -1,0 +1,192 @@
+<div class="app-main" id="main">
+  <!-- begin container-fluid -->
+  <div class="container-fluid">
+    <!-- begin row -->
+    <div class="row">
+      <div class="col-md-12 m-b-30">
+        <!-- begin page title -->
+        <div class="d-block d-sm-flex flex-nowrap align-items-center">
+
+
+          <div class="page-title mb-2 mb-sm-0">
+
+          </div>
+          <div class="ml-auto d-flex align-items-center">
+            <nav>
+              <ol class="breadcrumb p-0 m-b-0">
+                <li class="breadcrumb-item">
+                  <a href="index.html"><i class="ti ti-home"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                  Pages
+                </li>
+                <li class="breadcrumb-item active text-primary" aria-current="page">Stock</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <!-- end page title -->
+      </div>
+    </div>
+    <!-- end row -->
+    <!-- start-clients contant-->
+
+
+    <div class="row">
+
+      <div class="search-wrapper">
+
+        <div class="search-content">
+          <form>
+            <div class="form-group">
+
+              <input type="text" class="form-control autocomplete" placeholder="Search Here" name="search"
+                [(ngModel)]="searchtext" autofocus="autofocus">
+
+              <div id='button-holder'>
+
+              </div>
+
+
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="card card-statistics clients-contant">
+          <div class="card-header">
+            <div class="d-xxs-flex justify-content-between align-items-center">
+              <div class="card-heading">
+                <h4 class="card-title">Stock List </h4>
+              </div>
+
+
+
+              <div class="mt-xxs-0 mt-3 btn-group btn-group-toggle">
+                <a class="btn btn-outline-dark btn-sm" data-toggle="modal" data-target="#exampleModal">
+                  Add New Stock
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body py-0 table-responsive">
+            <table class="table clients-contant-table mb-0">
+              <thead>
+                <tr>
+                  <th scope="col">Libelle Stock</th>
+                  <th scope="col">Quantity Product assigned </th>
+                  <th scope="col">Minimum quantity </th>
+                  <th scope="col">Creation Date </th>
+                  <th scope="col">Updated Date</th>
+                  <th scope="col" style="text-align: center">Actions</th>
+
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let r of listestock |filter : searchtext">
+
+
+                  <td>{{r.libelleStock}} </td>
+                  <td>{{r.stockproduittt.length}}</td>
+
+                  <td>{{r.qteMin}}</td>
+                  <td>{{r.dateCreation}}</td>
+                  <td>{{r.dateDerniereModification}}</td>
+
+
+
+                  <td><a (click)="goToDeleteUsers(r.idStock)" class="btn btn-icon btn-outline-danger btn-round"><i
+                        class="ti ti-trash"></i></a>
+                  <td><a [routerLink]="['/DashBoard/StockDetails',r.idStock]"
+                      class="btn btn-icon btn-outline-danger btn-round"><i class="ti-list"></i></a>
+
+                  </td>
+
+
+
+
+            </table>
+
+          </div>
+
+          <br>
+
+        </div>
+
+      </div>
+    </div>
+    <!-- end-clients contant-->
+  </div>
+  <!-- end container-fluid -->
+</div>
+
+
+
+
+
+<!-- add  reactive produit  -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">New Stock Form : </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formstock">
+
+          <div class="row">
+            <div class="col-12">
+
+
+
+              <div class="form-group">
+                <label class="control-label">Libelle Stock</label>
+                <input type="text" class="form-control" formControlName="libelleStock" />
+
+
+              </div>
+
+
+            </div>
+
+
+
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="control-label">Minimum quantity</label>
+                <input type="number" class="form-control" formControlName="qteMin" />
+
+              </div>
+
+            </div>
+
+
+
+
+
+
+
+            <div class="col-12 mt-3">
+
+
+              <button type="button" class="btn btn-primary btn-sm" href="javascript:window.location.reload()"
+                (click)="addprod()">Add Stock</button>
+              <br>
+            </div>
+            <div class="col-12 mt-3">
+              <button type="button" class="btn btn-dark" data-dismiss="modal" id="cancel">Close</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>

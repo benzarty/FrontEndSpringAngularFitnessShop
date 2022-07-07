@@ -1,0 +1,36 @@
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+      <!-- begin row -->
+  
+      <div class="row">
+        <div class="col-md-6" *ngFor="let u of produitonly; let i = index; let f = first">
+  
+  
+  
+          
+            <div class="card text-center">
+              <div class="card-body">
+                <img class="rounded-circle"
+                  src = "{{this.productservice.productsUrl+'/Imgarticles/'+u.idProduit}}" 
+                  style = "height :200px;width:200px"
+                 alt="">
+  
+                <h4 class="mt-3 font-weight-bold">Product Number {{ i + 1 }}</h4>
+                <p class="font-weight-bold">Code Of The product :{{ u.code }}</p>
+                <p class="font-weight-bold">Name of The product : {{ u.libelle }}</p>
+                <p class="font-weight-bold">Price Per Unit : {{ u.prixUnitaire }}</p>
+  
+              
+             
+                </div>
+  
+              <!--<button  (click)="getall(box.value)"> Valider </button> -->
+  
+              </div>
+            </div>
+      
+        </div>
+      </div>
+    </div>
+  

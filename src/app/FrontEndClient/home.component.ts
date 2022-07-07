@@ -32,12 +32,20 @@ export class HomeComponent implements OnInit {
 
        let ref = document.getElementById('cancel');
        ref?.click();
+       this.toastr.success('Notification', 'Succesfully Login');
 
 
 
 
         },
-        error: err => console.error(err),
+        error: err => {
+          console.error(err);
+        
+          this.toastr.error('Notification', 'Error Connextion');
+
+        
+        
+        },
         complete: () => console.log('DONE!')
       }
     )
@@ -55,12 +63,17 @@ export class HomeComponent implements OnInit {
 
           let ref = document.getElementById('cancel2');
           ref.click();
-          this.toastr.success('Notification', 'Succesfully Added');
+          this.toastr.success('Notification', 'Succesfully Registered');
 
 
 
         },
-        error: err => console.error(err),
+        error: err => {console.error(err);
+        
+          this.toastr.error('Notification', 'Something Wrong happened');
+
+        
+        },
         complete: () => console.log('DONE!')
       }
     )
