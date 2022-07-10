@@ -5,11 +5,18 @@ import { DashboardComponent } from './BackClient/dashboard/dashboard.component';
 import { LayoutComponent } from './Backclient/dashboard/layout/layout.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './FrontEndClient/home.component';
+import { CardDetailsComponent } from './FrontEndClient/modules/card-details/card-details.component';
+import { CardComponent } from './FrontEndClient/modules/card/card.component';
+import { ProductsComponent } from './FrontEndClient/modules/products/products.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'Home', component: HomeComponent, pathMatch: 'full' },
-  //{ path: 'DashBoard', component: DashboardComponent,canActivate:[AuthGuard],data:{roles:['Admin']} },
+  { path: 'Products', component: ProductsComponent, canActivate:[AuthGuard],data:{roles:['Admin']} },
+  { path: 'Card', component: CardComponent },
+  { path: 'CardDetails', component: CardDetailsComponent },
+
+
   {
     path: 'DashBoard',
     component: DashboardComponent,

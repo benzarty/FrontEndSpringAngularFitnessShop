@@ -52,8 +52,8 @@ export class ProduitComponent implements OnInit, OnDestroy {
       libelle: ['', [Validators.required]],
       code: ['', [Validators.required]],
       prixUnitaire: ['', [Validators.required]],
-      stockproduit: ['', [Validators.required]],
       fileName: ['', [Validators.required]],
+      description: ['', [Validators.required]],
 
       
     });
@@ -163,8 +163,9 @@ export class ProduitComponent implements OnInit, OnDestroy {
 
     this.formproduit.controls['prixUnitaire'].setValue(row.prixUnitaire);
       
+    this.formproduit.controls['description'].setValue(row.description);
 
-    this.formproduit.controls['stockproduit'].setValue(row.stockproduit.idStock);
+    
 
     
 

@@ -209,6 +209,20 @@
                 formControlName="fileName">
               <img [src]="imgURL" height="200" width="200" *ngIf="imgURL">
             </div>
+
+            <div class="col-12">
+              <div class="form-group">
+                <label class="control-label">Description</label>
+                <textarea  type="text" class="form-control" formControlName="description" ></textarea>
+
+              </div>
+
+            </div>
+
+
+
+
+
             <div class="col-12 mt-3">
               <!-- <button type="submit" class="btn btn-primary  btn-sm"><i class="fa fa-database"></i> Submit</button> -->
               <button *ngIf="showaddButton" type="button" class="btn btn-primary btn-sm"

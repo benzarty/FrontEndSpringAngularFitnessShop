@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   constructor(public userService: UserService, private userauthService: AuthService, private route: Router,private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    //this.forUser();
   }
 
   login(loginform: NgForm) {
@@ -26,9 +25,7 @@ export class HomeComponent implements OnInit {
           this.userauthService.setRoles(value.user.role);
           this.userauthService.setToken(value.jwtToken);
 
-          //const role = value.user.role[0].roleName;
-         // window.location.reload();
-       // console.log(value);
+      
 
        let ref = document.getElementById('cancel');
        ref?.click();

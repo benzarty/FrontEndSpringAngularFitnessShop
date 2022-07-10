@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './BackClient/dashboard/dashboard.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from './Auth/auth.guard';
@@ -20,6 +20,12 @@ import { HomeComponent } from './FrontEndClient/home.component';
 import { FooterComponent } from './FrontEndClient/footer/footer.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductsComponent } from './FrontEndClient/modules/products/products.component';
+import { NavBarComponent } from './FrontEndClient/Navbarfront/nav-bar.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { CardComponent } from './FrontEndClient/modules/card/card.component';
+import { CardDetailsComponent } from './FrontEndClient/modules/card-details/card-details.component';
 
 
 
@@ -34,16 +40,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavbarComponent,
     SidbarComponent,
     EndComponent,
+    ProductsComponent,
+    NavBarComponent,
+    CardComponent,
+    CardDetailsComponent,
+
     
     
       ],
   imports: [
+    NgxSliderModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     RouterModule,
     AdminModule,
+    Ng2SearchPipeModule,
     BrowserAnimationsModule,  //yetketbou ken houni héthom
     ToastrModule.forRoot(),  //yetketbou ken houni héthom
   ],

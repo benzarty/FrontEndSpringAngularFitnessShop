@@ -10,7 +10,7 @@
                     <!-- Logo -->
                     <div class="col-xl-2 col-lg-2 col-md-1">
                         <div class="logo">
-                            <a href="index.html"><img src="assets/Front/img/logo/logo.png" alt=""></a>
+                            <a [routerLink]="['/Home']"><img src="assets/Front/img/logo/logo.png" alt=""></a>
                         </div>
                     </div>
                     <div class="col-xl-10 col-lg-10 col-md-10">
@@ -19,16 +19,15 @@
                             <div class="main-menu f-right d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="services.html">Services</a></li>
-                                        <li><a href="schedule.html">schedule</a></li>
-                                        <li><a href="gallery.html">gallery</a></li>
-                                        <li><a href="blog.html">Blog</a>
+                                        <li><a  [routerLink]="['/Home']">Home</a></li>
+                                        <li><a href="#">About</a></li>
+                                        <li><a href="#">gallery</a></li>
+                                        <li><a href="#">Services</a>
                                             <ul class="submenu">
-                                                <li><a href="blog.html">Blog</a></li>
-                                                <li><a href="blog_details.html">Blog Details</a></li>
-                                                <li><a href="elements.html">Element</a></li>
+                                                <li><a [routerLink]="['/Products']">Products</a></li>
+                                                <li><a href="#">schedule </a></li>
+                                                <li><a href="#">Element</a></li>
+                                                
                                             </ul>
                                         </li>
 

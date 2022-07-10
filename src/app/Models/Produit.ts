@@ -8,6 +8,7 @@ export class Produit {
     fileName?:string;
 
     stockproduit:Stock;
+    description?:string;
 
 
 
