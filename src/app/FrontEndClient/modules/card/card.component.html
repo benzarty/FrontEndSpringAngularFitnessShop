@@ -17,116 +17,284 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
-    <div class="container pt-5">
-    <div class="card ">
 
-<div class="page-content container pt-5 pb-5">
-    <div class="page-header text-blue-d2">
-        <h1 class="page-title text-secondary-d1">
-            Invoice
-            <small class="page-info">
-                <i class="fa fa-angle-double-right text-80"></i>
-                ID: {{FactureClient.idFacture}}
-            </small>
-        </h1>
 
-        <div class="page-tools">
-            <div class="action-buttons">
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="Print">
-                    <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2"></i>
-                    Print
-                </a>
-                <a class="btn bg-white btn-light mx-1px text-95" href="#" data-title="PDF">
-                    <i class="mr-1 fa fa-file-pdf-o text-danger-m1 text-120 w-2"></i>
-                    Export
-                </a>
-            </div>
-        </div>
-    </div>
 
-    <div class="container px-0">
-        <div class="row mt-4">
-            <div class="col-12 col-lg-12">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="text-center text-150">
-                            <i class="fa fa-shopping-cart fa-2x text-success-m2 mr-1"></i>
-                            <span class="text-default-d3">FITNESS Card</span>
+    <div *ngIf="FactureClient" class="container pt-5">
+        <div class="card ">
 
+            <div class="page-content container pt-5 pb-5">
+                <div class="page-header text-blue-d2">
+                    <h1 class="page-title text-secondary-d1">
+                        Invoice
+                        <small class="page-info">
+                            <i class="fa fa-angle-double-right text-80"></i>
+                            ID: {{FactureClient.idFacture}}
+                        </small>
+                    </h1>
+
+                    <div class="page-tools">
+                        <div class="action-buttons">
+                            <a class="btn bg-white btn-light mx-1px text-95">
+                                <!-- <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2" ></i>
+                    Print -->
+                                <button class="btn btn-white text-primary-m1" printSectionId="demo" ngxPrint><i
+                                        class="fa fa-print"></i> PRINT</button>
+
+
+                            </a>
+
+                            <a class="btn bg-white btn-light mx-1px text-95" data-title="PDF">
+                                <button class="btn btn-white text-danger-m1 " (click)="makePDF()"><i
+                                        class="fa fa-print"></i> EXPORT</button>
+
+                            </a>
                         </div>
                     </div>
-                </div>
-                <!-- .row -->
 
-                <hr class="row brc-default-l1 mx-n1 mb-4" />
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div>
-                            <span class="text-sm text-grey-m2 align-middle">To:</span>
-                            <span class="text-600 text-110 text-blue align-middle">Alex Doe</span>
-                        </div>
-                        <div class="text-grey-m2">
-                            <div class="my-1">
-                                Street, City
-                            </div>
-                            <div class="my-1">
-                                State, Country
-                            </div>
-                            <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600">111-111-111</b></div>
-                        </div>
-                    </div>
-                    <!-- /.col -->
-
-                    <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
-                        <hr class="d-sm-none" />
-                        <div class="text-grey-m2">
-                            <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
-                                Invoice 
-                            </div>
-
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span> {{FactureClient.idFacture}}</div>
-
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Issue Date:</span> {{FactureClient.datefacture}}</div>
-
-                            <div *ngIf="FactureClient.active" class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Status:</span> <span class="badge badge-warning badge-pill px-25">Unpaid</span></div>
-
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Payment Method:</span> {{FactureClient.modepaiement}}</div>
-
-                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Discount Amount:</span> {{FactureClient.montantRemise}}</div>
-
-                        </div>
-                    </div>
-                    <!-- /.col -->
                 </div>
 
-                 
+                <div class="container px-0" id="demo" #demo>
+                    <div class="row mt-4">
+                        <div class="col-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text-center text-150">
+                                        <i class="fa fa-shopping-cart fa-2x text-success-m2 mr-1"></i>
+                                        <span class="text-default-d3">FITNESS Card</span>
 
-                   
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .row -->
 
-                    <div class="d-flex justify-content-end pt-5">      
-                                            
+                            <hr class="row brc-default-l1 mx-n1 mb-4" />
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div>
+                                        <span class="text-sm text-grey-m2 align-middle">To:</span>
+                                        <span class="text-600 text-110 text-blue align-middle"> {{ User.userFirstName }}
+                                            {{ User.userLastName }} </span>
+                                    </div>
+                                    <div class="text-grey-m2">
+                                        <div class="my-1">
+                                            Email : {{User.email}}
+                                        </div>
+
+                                        <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i>
+                                            <b class="text-600"> {{User.phone}}</b></div>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+
+                                <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+                                    <hr class="d-sm-none" />
+                                    <div class="text-grey-m2">
+                                        <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                                            Invoice
+                                        </div>
+
+                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                                class="text-600 text-90">ID:</span> {{FactureClient.idFacture}}</div>
+
+                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                                class="text-600 text-90">Issue Date:</span>
+                                            {{FactureClient.datefacture}}</div>
+
+                                        <div *ngIf="FactureClient.active" class="my-2"><i
+                                                class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                                class="text-600 text-90">Status:</span> <span
+                                                class="badge badge-warning badge-pill px-25">Unpaid</span></div>
+
+
+                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                                class="text-600 text-90">Payment Method:</span>
+                                            {{FactureClient.modepaiement}}</div>
+
+                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                                class="text-600 text-90">Discount Amount:</span>
+                                            {{FactureClient.montantRemise}}</div>
+
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+
+
+
+
+
+                            <div class="d-flex justify-content-end pt-5">
+
                                 <div class="pr-4">Total Amount :</div>
                                 <span class="text-150">{{FactureClient.montantFacture}} TND</span>
-            
+
+                            </div>
+
+                            <hr />
+
+                            <div>
+                                <span class="text-secondary-d1 text-105">Thank you for your business</span>
+                                <a class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0 ml-2">Pay Now</a>
+                                <a class="btn btn-warning btn-bold  float-right mt-3 mt-lg-0 "
+                                    [routerLink]="['/CardDetails',FactureClient.idFacture]">More Details</a>
+
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
-
-                <hr />
-
-                <div>
-                    <span class="text-secondary-d1 text-105">Thank you for your business</span>
-                    <a href="#" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Pay Now</a>
-                </div>
-
-              
             </div>
         </div>
     </div>
-</div>
-</div>
-</div>
-
-    </main>
 
 
-    <app-footer></app-footer>
+
+
+
+
+
+
+<div *ngIf="FactureClient==null">
+    <h3 class="text-center font-weight-bold pt-4">Card History</h3>
+
+    <div class="container pt-5" *ngFor="let c of FactureClientHistorique">
+        
+        <div class="card ">
+
+            <div class="page-content container pt-5 pb-5">
+                <div class="page-header text-blue-d2">
+                    <h1 class="page-title text-secondary-d1">
+                        Invoice
+                        <small class="page-info">
+                            <i class="fa fa-angle-double-right text-80"></i>
+                            ID: {{c.idFacture}}
+                        </small>
+                    </h1>
+
+
+                </div>
+
+                <div class="container px-0" id="demo" #demo>
+                    <div class="row mt-4">
+                        <div class="col-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="text-center text-150">
+                                        <i class="fa fa-shopping-cart fa-2x text-success-m2 mr-1"></i>
+                                        <span class="text-default-d3">FITNESS Card</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .row -->
+
+                            <hr class="row brc-default-l1 mx-n1 mb-4" />
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div>
+                                        <span class="text-sm text-grey-m2 align-middle">To:</span>
+                                        <span class="text-600 text-110 text-blue align-middle"> {{ User.userFirstName }}
+                                            {{ User.userLastName }} </span>
+                                    </div>
+                                    <div class="text-grey-m2">
+                                        <div class="my-1">
+                                            Email : {{User.email}}
+                                        </div>
+
+                                        <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i>
+                                            <b class="text-600"> {{User.phone}}</b></div>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+
+                                <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+                                    <hr class="d-sm-none" />
+                                    <div class="text-grey-m2">
+                                        <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                                            Invoice
+                                        </div>
+
+                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                                class="text-600 text-90">ID:</span> {{c.idFacture}}</div>
+
+                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                                class="text-600 text-90">Issue Date:</span>
+                                            {{c.datefacture}}</div>
+
+                                        <div *ngIf="c.active" class="my-2"><i
+                                                class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                                class="text-600 text-90">Status:</span> <span
+                                                class="badge badge-success badge-pill px-25">Paid</span></div>
+
+                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                                class="text-600 text-90">Payment Method:</span>
+                                            {{c.modepaiement}}</div>
+
+                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                                class="text-600 text-90">Discount Amount:</span>
+                                            {{c.montantRemise}}</div>
+
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+
+
+
+
+
+                            <div class="d-flex justify-content-end pt-5">
+
+                                <div class="pr-4">Total Amount :</div>
+                                <span class="text-150">{{c.montantFacture}} TND</span>
+
+                            </div>
+
+                            <hr />
+
+                            <div>
+                                <span class="text-secondary-d1 text-105">Thank you for your business</span>
+                                <a class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0 ml-2">Pay Now</a>
+                                <a class="btn btn-warning btn-bold  float-right mt-3 mt-lg-0 "
+                                    [routerLink]="['/CardDetails',c.idFacture]">More Details</a>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</main>
+
+
+<app-footer></app-footer>

@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'Home', component: HomeComponent, pathMatch: 'full' },
   { path: 'Products', component: ProductsComponent, canActivate:[AuthGuard],data:{roles:['Admin']} },
   { path: 'Card', component: CardComponent },
-  { path: 'CardDetails', component: CardDetailsComponent },
+  { path: 'CardDetails/:id', component: CardDetailsComponent },
 
 
   {

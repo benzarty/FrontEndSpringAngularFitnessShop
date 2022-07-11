@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Facture } from 'src/app/Models/Facture';
 import { AuthService } from 'src/app/Services/auth.service';
 import { FactureService } from 'src/app/Services/facture.service';
 import jwt_decode from 'jwt-decode';
+import { UserService } from 'src/app/Services/user.service';
+import { User } from 'src/app/Models/User';
+import jsPDF from 'jspdf';
 
 
 @Component({
@@ -12,38 +15,83 @@ import jwt_decode from 'jwt-decode';
 })
 export class CardComponent implements OnInit {
 
-  token:any;
+  token: any;
   FactureClient: Facture;
+  FactureClientHistorique: Facture[];
 
-  constructor(private auth: AuthService,private us:FactureService) { }
+  User: User;
+  @ViewChild('demo',{static:false}) el!: ElementRef;
+
+
+  constructor(private auth: AuthService, private us: FactureService, private userservice: UserService) { }
 
   ngOnInit(): void {
     this.getFactureByClient();
+
+    this.getFacturesHistorique();
   }
 
- 
+
   getFactureByClient() {
 
-    this.token=this.auth.getToken()
-  
-    const decoded = this.getDecodedAccessToken(this.token); 
-    
-    const username = decoded.sub; 
+    this.token = this.auth.getToken()
+
+    const decoded = this.getDecodedAccessToken(this.token);
+
+    const username = decoded.sub;
+
+
+
 
 
     this.us.getFactureByClient(username).subscribe(res => {
       this.FactureClient = res;
 
+
+console.log( this.FactureClient);
+
     });
+
+    this.userservice.GetUserByid(username).subscribe(res => {
+      this.User = res;
+
+
+    });
+
+
   }
 
 
   getDecodedAccessToken(token: string): any {
     try {
       return jwt_decode(token);
-    } catch(Error) {
+    } catch (Error) {
       return null;
     }
   }
 
+
+  makePDF()
+{
+  let pdf=new  jsPDF('p','pt','a1');
+  pdf.html(this.el.nativeElement,{callback:(pdf)=>{pdf.save("Facture.pdf");
+  }})
+  
+}
+
+getFacturesHistorique() {
+
+  this.token = this.auth.getToken()
+
+  const decoded = this.getDecodedAccessToken(this.token);
+
+  const username = decoded.sub;
+
+  this.us.getFacturesHistorique(username).subscribe(res => {
+    this.FactureClientHistorique = res;
+
+
+  });
+}
+  
 }

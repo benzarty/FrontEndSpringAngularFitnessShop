@@ -17,5 +17,10 @@ export class FactureService {
   }
 
 
+  getFacturesHistorique(idclient:string) : Observable<Facture[]>{
+    return this.myhttp.get<Facture[]>(environment.URL +"/facture/getFacturesHistorique/"+idclient);
+  }
+
+
 
 }

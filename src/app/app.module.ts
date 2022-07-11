@@ -26,6 +26,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { CardComponent } from './FrontEndClient/modules/card/card.component';
 import { CardDetailsComponent } from './FrontEndClient/modules/card-details/card-details.component';
+import { NgxPrintModule } from 'ngx-print';
 
 
 
@@ -50,6 +51,7 @@ import { CardDetailsComponent } from './FrontEndClient/modules/card-details/card
       ],
   imports: [
     NgxSliderModule,
+    NgxPrintModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,

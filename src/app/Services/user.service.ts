@@ -73,4 +73,10 @@ export class UserService {
   }
 
 
+  
+  public GetUserByid(clientid: string) : Observable<User>{
+    return this.httpclient.get<User>(environment.URL + '/retrieve-user/'+clientid );
+  }
+
+
 }

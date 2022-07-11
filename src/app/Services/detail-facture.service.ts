@@ -13,6 +13,10 @@ export class DetailFactureService {
 
 
 
+  getDetailFacture(detailproduit: string) : Observable<DetailFacture[]>{
+    return this.myhttp.get<DetailFacture[]>(environment.URL+"/DetailFacture/retrieveDetailFactureBYidfacture/" +detailproduit);
+  }
+
   
   addDetailFacture (detailfacture: DetailFacture,idProduit:number,idclient:string): Observable<DetailFacture> {
     return this.myhttp.post<DetailFacture>(environment.URL+"/DetailFacture/add-DetailFacture2/"+idProduit+"/"+idclient, detailfacture);}
