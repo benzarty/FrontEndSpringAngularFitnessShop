@@ -128,19 +128,29 @@
                             <div class="d-flex justify-content-end pt-5">
 
                                 <div class="pr-4">Total Amount :</div>
-                                <span class="text-150">{{FactureClient.montantFacture}} TND</span>
+                                <span class="text-150">{{FactureClient.montantFacture}} Euro</span>
 
                             </div>
 
                             <hr />
 
                             <div>
-                                <span class="text-secondary-d1 text-105">Thank you for your business</span>
-                                <a class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0 ml-2">Pay Now</a>
+                                <a class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0 ml-2" (click)="ShowPay()">Pay Now</a>
                                 <a class="btn btn-warning btn-bold  float-right mt-3 mt-lg-0 "
                                     [routerLink]="['/CardDetails',FactureClient.idFacture]">More Details</a>
 
                             </div>
+
+
+                            <app-payment *ngIf="showpay"
+                            idFacture="{{FactureClient.idFacture}}"
+                            montantFacture="{{FactureClient.montantFacture}}"
+                            datefacture="{{FactureClient.datefacture}}"></app-payment>
+                        
+                        
+
+                  
+
 
 
                         </div>
@@ -250,7 +260,7 @@
                             <div class="d-flex justify-content-end pt-5">
 
                                 <div class="pr-4">Total Amount :</div>
-                                <span class="text-150">{{c.montantFacture}} TND</span>
+                                <span class="text-150">{{c.montantFacture}} Euro</span>
 
                             </div>
 
@@ -258,7 +268,6 @@
 
                             <div>
                                 <span class="text-secondary-d1 text-105">Thank you for your business</span>
-                                <a class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0 ml-2">Pay Now</a>
                                 <a class="btn btn-warning btn-bold  float-right mt-3 mt-lg-0 "
                                     [routerLink]="['/CardDetails',c.idFacture]">More Details</a>
 

@@ -15,6 +15,9 @@ import jsPDF from 'jspdf';
 })
 export class CardComponent implements OnInit {
 
+  paymentHandler: any = null;
+  showpay:boolean = false;
+
   token: any;
   FactureClient: Facture;
   FactureClientHistorique: Facture[];
@@ -27,6 +30,8 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFactureByClient();
+
+
 
     this.getFacturesHistorique();
   }
@@ -93,5 +98,23 @@ getFacturesHistorique() {
 
   });
 }
+
+ShowPay()
+{ 
+  if (this.showpay==false)
+  
+  this.showpay=true;
+   
+  else this.showpay=false;
+
+  console.log(this.showpay);
+  
+}
+
+
+
+
+
+
   
 }

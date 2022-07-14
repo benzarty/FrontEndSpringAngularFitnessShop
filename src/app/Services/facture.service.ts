@@ -23,4 +23,9 @@ export class FactureService {
 
 
 
+  Closefacture (v: number): Observable<Facture> {
+    return this.myhttp.put<Facture>(environment.URL+"/facture/closefacture/"+v,null);
+    }
+
+
 }

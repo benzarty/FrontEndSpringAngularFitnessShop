@@ -27,6 +27,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { CardComponent } from './FrontEndClient/modules/card/card.component';
 import { CardDetailsComponent } from './FrontEndClient/modules/card-details/card-details.component';
 import { NgxPrintModule } from 'ngx-print';
+import { NgxStripeModule } from 'ngx-stripe';
+import { PaymentComponent } from './FrontEndClient/modules/payment/payment.component';
 
 
 
@@ -45,6 +47,7 @@ import { NgxPrintModule } from 'ngx-print';
     NavBarComponent,
     CardComponent,
     CardDetailsComponent,
+    PaymentComponent,
 
     
     
@@ -60,7 +63,8 @@ import { NgxPrintModule } from 'ngx-print';
     RouterModule,
     AdminModule,
     Ng2SearchPipeModule,
-    BrowserAnimationsModule,  //yetketbou ken houni héthom
+    NgxStripeModule.forRoot('pk_test_51LKbfQH5PKYWkTUnQsjOXMbRrZalA3TpxvKyvBnIEuyGZDhMrb47Zn8269SluMeWNkT5lJQuHboCzHk20yXWgZZD00ru3vmOuV'),
+BrowserAnimationsModule,  //yetketbou ken houni héthom
     ToastrModule.forRoot(),  //yetketbou ken houni héthom
   ],
   providers: [AuthGuard,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},UserService], 
