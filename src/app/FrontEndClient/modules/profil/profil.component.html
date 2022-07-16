@@ -1,0 +1,94 @@
+<app-nav-bar></app-nav-bar>
+<main>
+  <!--? Hero Start -->
+  <div class="slider-area2">
+    <div class="slider-height2 d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="hero-cap hero-cap2 text-center pt-70">
+              <h2>Update your info</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hero End -->
+  <div class="container">
+
+    <section class="services-area">
+      <!--? Want To work -->
+      <section class="wantToWork-area w-padding">
+        <form [formGroup]="formuser">
+
+
+          <input type="text" class="form-control" id="inputEmail4" placeholder="First Name" name="userName"
+            formControlName="userName" hidden>
+
+
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">First Name</label>
+              <input type="text" class="form-control" id="inputEmail4" placeholder="First Name" name="userFirstName"
+                formControlName="userFirstName">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Last Name</label>
+              <input type="text" class="form-control" id="inputPassword4" placeholder="Password" name="userLastName"
+                formControlName="userLastName">
+            </div>
+          </div>
+
+
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Old Password</label>
+              <input type="password" class="form-control" placeholder="Old Password" formControlName="oldpassword">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">New Password</label>
+              <input type="password" class="form-control" id="inputPassword4" placeholder="put your new password here"
+                name="text" formControlName="userPassword">
+            </div>
+          </div>
+
+
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputEmail4">Phone</label>
+              <input type="text" class="form-control" id="inputEmail4" placeholder="Phone Number" name="phone"
+                formControlName="phone">
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPassword4">Phone</label>
+              <input type="text" class="form-control" id="inputPassword4" placeholder="Email" name="email"
+                formControlName="email">
+            </div>
+          </div>
+
+
+
+
+
+
+          <div class="form-group">
+            <label>File Upload </label>
+            <input type="file" accept="image/*" (change)="onSelectFile($event)" class="form-control" type="file"
+              formControlName="fileName">
+            <img [src]="imgURL" height="200" width="200" *ngIf="imgURL">
+          </div>
+
+          <button type="submit" class="btn btn-primary mt-5" (click)="UpdateUsergo()">Update...</button>
+        </form>
+      </section>
+    </section>
+    <!--? Services Area Start -->
+  </div>
+  <!-- Services Area End -->
+</main>
+<app-footer></app-footer>
+<!-- Scroll Up -->

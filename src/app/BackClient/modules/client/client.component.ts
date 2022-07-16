@@ -42,7 +42,6 @@ export class ClientComponent implements OnInit, OnDestroy {
       userPassword: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       active: ['', [Validators.required]],
-      picture: ['', [Validators.required]],
       email: ['', [Validators.required]],
 
     })
@@ -147,7 +146,6 @@ export class ClientComponent implements OnInit, OnDestroy {
 
     this.formValue.controls['active'].setValue(row.active);
 
-    this.formValue.controls['picture'].setValue(row.picture);
     this.formValue.controls['email'].setValue(row.email);
     this.formValue.controls['role'].setValue(row.role);
 

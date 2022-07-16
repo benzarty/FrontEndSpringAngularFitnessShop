@@ -78,5 +78,16 @@ export class UserService {
     return this.httpclient.get<User>(environment.URL + '/retrieve-user/'+clientid );
   }
 
+  
+  createData(formData: FormData): Observable<any> {
+    return this.httpclient.post(`${environment.URL+"/file"}`, formData);
+  }
+
+  createData2(formData: FormData): Observable<any> {
+    return this.httpclient.post(`${environment.URL+"/file2"}`, formData,{
+      headers: this.requestHeader,
+    });
+  }
+
 
 }

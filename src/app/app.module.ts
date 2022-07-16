@@ -29,6 +29,7 @@ import { CardDetailsComponent } from './FrontEndClient/modules/card-details/card
 import { NgxPrintModule } from 'ngx-print';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PaymentComponent } from './FrontEndClient/modules/payment/payment.component';
+import { ProfilComponent } from './FrontEndClient/modules/profil/profil.component';
 
 
 
@@ -48,6 +49,7 @@ import { PaymentComponent } from './FrontEndClient/modules/payment/payment.compo
     CardComponent,
     CardDetailsComponent,
     PaymentComponent,
+    ProfilComponent,
 
     
     

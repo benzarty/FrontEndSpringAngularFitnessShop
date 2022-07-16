@@ -32,7 +32,7 @@
                                         </li>
 
                                         <li><a href="contact.html">Contact</a></li>
-                                        <li><a href="contact.html">Profile</a></li>
+                                        <li><a *ngIf="isLoggedIn()" [routerLink]="['/Profil']">Profile</a></li>
 
                                         <li><a *ngIf="isLoggedIn() && userService.roleMatch(['Admin']) " [routerLink]="['/DashBoard']">Dashboard</a></li>
 
@@ -1043,20 +1043,20 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form #t="ngForm" (ngSubmit)="Register(t)">
+            <form [formGroup]="formuser" (ngSubmit)="NewUser()">
 
                 <div class="modal-body">
 
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">First Name :</label>
-                        <input type="text" class="form-control" ngModel name="userFirstName" id="userFirstName" required
-                            placeholder="Enter your username">
+                        <input type="text" class="form-control"  name="userFirstName" id="userFirstName" formControlName="userFirstName"
+                            placeholder="Enter your First Name">
                     </div>
       
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Last Name :</label>
-                        <input type="text" class="form-control" ngModel name="userLastName" id="userLastName" required
-                            placeholder="Enter your username">
+                        <input type="text" class="form-control"  name="userLastName" id="userLastName" formControlName="userLastName"
+                            placeholder="Enter your Last Name">
                     </div>
       
       
@@ -1064,40 +1064,46 @@
       
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">User Name:</label>
-                        <input type="text" class="form-control" ngModel name="userName" id="userName" required
-                            placeholder="Enter your username">
+                        <input type="text" class="form-control"  name="userName" id="userName" formControlName="userName"
+                            placeholder="Enter your User Name">
                     </div>
       
                     <div class="form-group">
                         <label for="Userpassword" class="col-form-label">Password :</label>
-                        <input type="password" class="form-control" ngModel name="userPassword" id="userPassword" required
-                            placeholder="Enter your userPassword">
+                        <input type="password" class="form-control"  name="userPassword" id="userPassword" formControlName="userPassword"
+                            placeholder="Enter your Password">
                     </div>
       
       
                     <div class="form-group">
                       <label for="Userpassword" class="col-form-label">Phone :</label>
-                      <input type="text" class="form-control" ngModel name="phone" id="phone" required
+                      <input type="text" class="form-control"  name="phone" id="phone" formControlName="phone"
                           placeholder="Enter your Phone">
                   </div>
       
-                <div class="form-group">
-                  <label for="Userpassword" class="col-form-label">Picture :</label>
-                  <input type="text" class="form-control" ngModel name="picture" id="picture" required
-                      placeholder="Enter your Picture">
-              </div>
+          
+
+
+
               <div class="form-group">
                 <label for="Userpassword" class="col-form-label">Email :</label>
-                <input type="text" class="form-control" ngModel name="email" id="email" required
+                <input type="text" class="form-control"  name="email" id="email" formControlName="email"
                     placeholder="Enter your Email">
             </div>
+
+            <div class="form-group">
+                <label>File Upload </label>
+                <input type="file" accept="image/*" (change)="onSelectFile($event)" class="form-control " type="file"
+                  formControlName="fileName" >
+                <img [src]="imgURL" height="200" width="200" *ngIf="imgURL" class="rounded-circle" style="margin-left:120px" >
+              </div>
       
       
       
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-dismiss="modal" id="cancel2">Close</button>
-                    <input type="submit" [disabled]="t.invalid" class="btn btn-danger" value="Register">
+                    <input type="submit"  class="btn btn-danger" value="Register">
                 </div>
             </form>
 

@@ -79,7 +79,6 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Phone</th>
 
-                                <th scope="col">Picture</th>
 
                                 <th scope="col">Roles</th>
                                 <th scope="col">Active</th>
@@ -103,7 +102,6 @@
                                 <td>{{c.userName}}</td>
                                 <td>{{c.email}}</td>
                                 <td>{{c.phone}}</td>
-                                <td>{{c.picture}}</td>
                                 <td  *ngFor="let c of c.role">
                                 {{c.roleName}}
                                 </td>
@@ -200,11 +198,7 @@
               </select>
           </div>
 
-          <div class="form-group">
-            <label for="Userpassword" class="col-form-label">Picture :</label>
-            <input type="text" class="form-control" formControlName="picture" id="picture"
-                placeholder="Enter your Picture">
-        </div>
+      
         <div class="form-group">
           <label for="Userpassword" class="col-form-label">Email :</label>
           <input type="text" class="form-control" formControlName="email" id="email"

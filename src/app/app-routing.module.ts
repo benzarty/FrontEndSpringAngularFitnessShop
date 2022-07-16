@@ -8,13 +8,18 @@ import { HomeComponent } from './FrontEndClient/home.component';
 import { CardDetailsComponent } from './FrontEndClient/modules/card-details/card-details.component';
 import { CardComponent } from './FrontEndClient/modules/card/card.component';
 import { ProductsComponent } from './FrontEndClient/modules/products/products.component';
+import { ProfilComponent } from './FrontEndClient/modules/profil/profil.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'Home', component: HomeComponent, pathMatch: 'full' },
   { path: 'Products', component: ProductsComponent, canActivate:[AuthGuard],data:{roles:['Admin']} },
-  { path: 'Card', component: CardComponent },
-  { path: 'CardDetails/:id', component: CardDetailsComponent },
+  { path: 'Card', component: CardComponent, canActivate:[AuthGuard],data:{roles:['Admin']} },
+  { path: 'CardDetails/:id', component: CardDetailsComponent, canActivate:[AuthGuard],data:{roles:['Admin']} },
+  { path: 'Profil', component: ProfilComponent, canActivate:[AuthGuard],data:{roles:['Admin']} },
+
+
+  
 
 
   {
