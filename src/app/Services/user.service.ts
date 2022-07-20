@@ -12,6 +12,11 @@ export class UserService {
 
 
   PATH_OF_API = 'http://localhost:9090';
+
+  public userurl:string='http://localhost:9090'
+
+
+
   //fil classe jwtfilter kol request ye7eb 3la header donc na7na 9ouloulou manech passin chay
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
 

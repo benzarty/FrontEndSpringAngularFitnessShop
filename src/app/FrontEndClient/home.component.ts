@@ -96,32 +96,6 @@ export class HomeComponent implements OnInit {
   }
 
 
-  Register(loginform: NgForm) {
-    console.log(loginform.value);
-    this.userService.Register(loginform.value).subscribe(
-      {
-        next: (value: any) => {
-         
-
-          let ref = document.getElementById('cancel2');
-          ref.click();
-          this.toastr.success('Notification', 'Succesfully Registered');
-
-
-
-        },
-        error: err => {console.error(err);
-        
-          this.toastr.error('Notification', 'Something Wrong happened');
-
-        
-        },
-        complete: () => console.log('DONE!')
-      }
-    )
-
-
-  }
 
 
 

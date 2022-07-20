@@ -19,7 +19,7 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a  [routerLink]="['/Home']">Home</a></li>
-                                        <li><a href="blog.html">Services</a>
+                                        <li><a *ngIf="isLoggedIn()">Services</a>
                                             <ul class="submenu">
                                                 <li> <a [routerLink]="['/Products']">Products</a></li>
                                             

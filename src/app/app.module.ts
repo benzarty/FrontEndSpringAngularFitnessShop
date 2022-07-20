@@ -30,6 +30,8 @@ import { NgxPrintModule } from 'ngx-print';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PaymentComponent } from './FrontEndClient/modules/payment/payment.component';
 import { ProfilComponent } from './FrontEndClient/modules/profil/profil.component';
+import { DetailProductComponent } from './FrontEndClient/modules/detail-product/detail-product.component';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 
 
@@ -50,6 +52,7 @@ import { ProfilComponent } from './FrontEndClient/modules/profil/profil.componen
     CardDetailsComponent,
     PaymentComponent,
     ProfilComponent,
+    DetailProductComponent,
 
     
     
@@ -63,6 +66,7 @@ import { ProfilComponent } from './FrontEndClient/modules/profil/profil.componen
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
+    NgxStarRatingModule,
     AdminModule,
     Ng2SearchPipeModule,
     NgxStripeModule.forRoot('pk_test_51LKbfQH5PKYWkTUnQsjOXMbRrZalA3TpxvKyvBnIEuyGZDhMrb47Zn8269SluMeWNkT5lJQuHboCzHk20yXWgZZD00ru3vmOuV'),

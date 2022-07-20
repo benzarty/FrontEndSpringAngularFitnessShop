@@ -1,111 +1,114 @@
 <app-nav-bar></app-nav-bar>
 <main>
-    <!--? Hero Start -->
-    <div class="slider-area2">
-        <div class="slider-height2 d-flex align-items-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <div class="hero-cap hero-cap2 text-center pt-70">
-                            <h2>Discover Our Products</h2>
-                        </div>
-                    </div>
-                </div>
+  <!--? Hero Start -->
+  <div class="slider-area2">
+    <div class="slider-height2 d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="hero-cap hero-cap2 text-center pt-70">
+              <h2>Discover Our Products</h2>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <!-- Hero End -->
-    <!--? Services Area Start -->
-    <section class="services-area">
-        <!--? Want To work -->
-        <section class="wantToWork-area w-padding">
-            <div class="container">
-                <div class="row align-items-end justify-content-between">
-                    <div class="col-lg-6 col-md-10 col-sm-10">
-                        <div class="section-tittle">
-                            <span>OUR Products FOR YOU</span>
-                        </div>
-                    </div>
-                 
-                </div>
+  </div>
+  <!-- Hero End -->
+  <!--? Services Area Start -->
+  <section class="services-area">
+    <!--? Want To work -->
+    <section class="wantToWork-area w-padding">
+      <div class="container">
+        <div class="row align-items-end justify-content-between">
+          <div class="col-lg-6 col-md-10 col-sm-10">
+            <div class="section-tittle">
+              <span>OUR Products FOR YOU</span>
             </div>
-        </section>
-        <!-- Want To work End -->
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 posts-list">
-                    <div class="row">
+          </div>
 
-                <div class="col-4" *ngFor="let u of listeproduit | filter : searchtext">
-                    <div class="single-cat single-cat2 text-center mb-50">
-                        <div class="cat-icon">
-                           <img class="rounded-circle"
-                           src="{{this.produitservice.productsUrl+'/Imgarticles/'+u.idProduit}}"
-                           style="height :200px;width:180px" alt="">
-                        </div>
-                        <div class="cat-cap">
-                            <h5><a [ngStyle]="{'text-decoration': 'underline'}" class="pt-3">{{u.libelle}}</a></h5>
-
-                            <h5><a>{{u.prixUnitaire}} Euro</a></h5>
-
-                            <p>{{u.description}}</p>
-                        </div>
-                        <div class="img-cap">
-                            <a (click)="SetDetails(u)" data-toggle="modal"
-                            data-target="#exampleModal">Order Now Hir !!! <i class="ti-arrow-right"></i></a>
-                        </div>
-
-                       
-                    </div>
-                </div>
-              
-</div>
-
-</div>
-
-
-
-
-<div class="col-lg-4">
-    <div class="blog_right_sidebar">
-       <aside class="single_sidebar_widget search_widget">
-          <form action="#">
-             <div class="form-group">
-               <h5>Search your favorite product </h5>
-         
-
-
-               
-
-
-                <div class="input-group mb-3">
-                   <input type="text" class="form-control" placeholder='Search Keyword'
-                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" name="search"
-                      [(ngModel)]="searchtext">
-                
-                </div>
-             </div>
-          
-          </form>
-       </aside>
-       <aside class="single_sidebar_widget post_category_widget">
-          <h4 class="widget_title" style="color: #2d2d2d;">Filter By Price</h4>
-          
-
-<ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"  (mouseup)="filterMin()"></ngx-slider>
-       </aside>
-    
-   
- 
- 
-    </div>
- </div>
-
-
-            </div>
         </div>
+      </div>
     </section>
-    <!-- Services Area End -->
+    <!-- Want To work End -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-9 posts-list">
+          <div class="row">
+
+            <div class="col-4" *ngFor="let u of listeproduit | filter : searchtext">
+              <div class="single-cat single-cat2 text-center mb-50">
+                <div class="cat-icon">
+                  <img class="rounded-circle" src="{{this.produitservice.productsUrl+'/Imgarticles/'+u.idProduit}}"
+                    style="height :200px;width:180px" alt="">
+                </div>
+                <div class="cat-cap">
+                  <h5><a [ngStyle]="{'text-decoration': 'underline'}" class="pt-3">{{u.libelle}}</a></h5>
+
+                  <h5><a>{{u.prixUnitaire}} Euro</a></h5>
+
+                  <p>{{u.description}}</p>
+                </div>
+                <div class="img-cap">
+                  <a (click)="SetDetails(u)" data-toggle="modal" data-target="#exampleModal">Order Now Hir !!! <i
+                      class="ti-arrow-right"></i></a>
+                </div>
+
+                <div class="btn btn-warning mb-2">
+                  <a [routerLink]="['/DetailProduit',u.idProduit]">Click For More Info <i class="ti-arrow-right"></i></a>
+                </div>
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+        <div class="col-lg-3">
+          <div class="blog_right_sidebar">
+            <aside class="single_sidebar_widget search_widget">
+              <form action="#">
+                <div class="form-group">
+                  <h5>Search your favorite product </h5>
+
+
+
+
+
+
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder='Search Keyword' onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Search Keyword'" name="search" [(ngModel)]="searchtext">
+
+                  </div>
+                </div>
+
+              </form>
+            </aside>
+            <aside class="single_sidebar_widget post_category_widget">
+              <h4 class="widget_title" style="color: #2d2d2d;">Filter By Price</h4>
+
+
+              <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (mouseup)="filterMin()">
+              </ngx-slider>
+            </aside>
+
+
+
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+  <!-- Services Area End -->
 </main>
 <app-footer></app-footer>
 <!-- Scroll Up -->
@@ -121,9 +124,9 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-         
 
-         <h5  class="modal-title">Place your Order : </h5>
+
+        <h5 class="modal-title">Place your Order : </h5>
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -136,11 +139,11 @@
           <div class="row">
             <div class="col-12">
 
-           
+
 
               <div class="form-group">
                 <label class="control-label">Nom produit</label>
-                <input type="text" class="form-control" formControlName="libelle" readonly/>
+                <input type="text" class="form-control" formControlName="libelle" readonly />
 
 
               </div>
@@ -148,50 +151,51 @@
 
 
             </div>
-       
+
 
 
 
             <div class="col-12">
               <div class="form-group">
                 <label class="control-label">prixUnitaire</label>
-                <input type="number" class="form-control"  formControlName="prixUnitaire" readonly  /> 
+                <input type="number" class="form-control" formControlName="prixUnitaire" readonly />
 
               </div>
 
             </div>
 
-            <input type="number" class="form-control" hidden  formControlName="idProduit"/>
+            <input type="number" class="form-control" hidden formControlName="idProduit" />
 
-            
+
             <div class="col-12">
-               <div class="form-group">
-                 <label class="control-label"> Number of unit</label> <br>
+              <div class="form-group">
+                <label class="control-label"> Number of unit</label> <br>
 
-                 <input type="number" class="form-control" readonly formControlName="qte" name="qte" [value]=[this.qte]   />
-<div class="mt-3">
-                 <span class="contact-info__icon"><i (click)="minus()" class="fa fa-minus-square"></i></span>
-                 <span class="contact-info__icon"><i (click)="Plus()" class="fa fa-plus-square float-right"></i></span>
-               </div>
-               </div>
- 
-             </div>
+                <input type="number" class="form-control" readonly formControlName="qte" name="qte"
+                  [value]=[this.qte] />
+                <div class="mt-3">
+                  <span class="contact-info__icon"><i (click)="minus()" class="fa fa-minus-square"></i></span>
+                  <span class="contact-info__icon"><i (click)="Plus()" class="fa fa-plus-square float-right"></i></span>
+                </div>
+              </div>
 
-             <div class="text-center">
-            <h3>Total Price :</h3> <h1 style="Color:red"> {{this.total}}</h1>
-</div>
+            </div>
+
+            <div class="text-center">
+              <h3>Total Price :</h3>
+              <h1 style="Color:red"> {{this.total}}</h1>
+            </div>
 
 
             <div class="col-12 mt-3">
-               <button type="button" class="btn btn-dark" data-dismiss="modal" id="cancel">Close</button>
+              <button type="button" class="btn btn-dark" data-dismiss="modal" id="cancel">Close</button>
 
-              <button  type="submit" class="btn btn-primary ml-2" 
-                href="#">ADD To Card</button>
+              <button type="submit" class="btn btn-primary ml-2" href="#">ADD To Card</button>
 
-              
+
               <br>
             </div>
-           
+
           </div>
         </form>
 

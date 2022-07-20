@@ -17,6 +17,7 @@ export class StockComponent implements OnInit,OnDestroy {
   formstock: FormGroup;
   listestock: Stock[];
   StockObject: Stock;
+  currentRate: number=3;
 
  ob: Subscription
 

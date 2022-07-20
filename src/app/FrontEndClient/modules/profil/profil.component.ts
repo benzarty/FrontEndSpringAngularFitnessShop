@@ -26,7 +26,7 @@ export class ProfilComponent implements OnInit {
 
   constructor(
     private auth: AuthService,
-    private us: UserService,
+    public us: UserService,
     private formbuider: FormBuilder,
     private toastr: ToastrService,
     private router: Router,
@@ -63,7 +63,6 @@ export class ProfilComponent implements OnInit {
     this.us.GetUserByid(username).subscribe((res) => {
       this.Client = res;
 
-      console.log(this.Client);
 
       this.formuser.controls['userFirstName'].setValue(
         this.Client.userFirstName

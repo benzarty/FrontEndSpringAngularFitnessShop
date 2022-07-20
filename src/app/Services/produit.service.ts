@@ -27,9 +27,9 @@ export class ProduitService {
 
 
   
-  // getbyid(idProduit :number) {
-  //   return this.myhttp.get<DetailProduit>( this.productsUrl+'/retrieve-produit/' + idProduit);
-  // }
+  getbyid(idProduit :number) {
+    return this.myhttp.get<Produit>(environment.URL+'/Produit/retrieve-produit/' + idProduit);
+  }
 
   deleteProduct (product: number ): Observable<Produit> {
     const url=environment.URL+"/Produit/remove-produit/"+ product;
