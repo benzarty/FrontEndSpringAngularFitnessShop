@@ -4,33 +4,36 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { User } from '../Models/User';
 import { AuthService } from '../Services/auth.service';
 import { UserService } from '../Services/user.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-
   userFile;
   imgURL: any;
   public imagePath;
   formuser: FormGroup;
   public message: string;
-  ob:Subscription;
+  ob: Subscription;
 
+  uss: User;
 
-
-
-  constructor(public userService: UserService, private userauthService: AuthService, private route: Router,private toastr: ToastrService,private formbuider: FormBuilder,
-    ) { }
+  constructor(
+    public userService: UserService,
+    private userauthService: AuthService,
+    private route: Router,
+    private toastr: ToastrService,
+    private formbuider: FormBuilder
+  ) {}
 
   ngOnInit(): void {
     this.init();
   }
-
 
   init() {
     this.formuser = this.formbuider.group({
@@ -41,64 +44,31 @@ export class HomeComponent implements OnInit {
 
       userPassword: ['', [Validators.required]],
 
-      
       phone: ['', [Validators.required]],
       fileName: ['', [Validators.required]],
 
       email: ['', [Validators.required]],
     });
-
   }
-
-  
-
-
-
-
-
-
-
-
-
-
-
 
   login(loginform: NgForm) {
-    this.userService.login(loginform.value).subscribe(
-      {
-        next: (value: any) => {
-          this.userauthService.setRoles(value.user.role);
-          this.userauthService.setToken(value.jwtToken);
+    this.userService.login(loginform.value).subscribe({
+      next: (value: any) => {
+        this.userauthService.setRoles(value.user.role);
+        this.userauthService.setToken(value.jwtToken);
 
-      
+        let ref = document.getElementById('cancel');
+        ref?.click();
+        this.toastr.success('Notification', 'Succesfully Login');
+      },
+      error: (err) => {
+        console.error(err);
 
-       let ref = document.getElementById('cancel');
-       ref?.click();
-       this.toastr.success('Notification', 'Succesfully Login');
-
-
-
-
-        },
-        error: err => {
-          console.error(err);
-        
-          this.toastr.error('Notification', 'Error Connextion');
-
-        
-        
-        },
-        complete: () => console.log('DONE!')
-      }
-    )
-
-
+        this.toastr.error('Notification', 'Error Connextion');
+      },
+      complete: () => console.log('DONE!'),
+    });
   }
-
-
-
-
-
 
   public isLoggedIn() {
     return this.userauthService.isLoggedIn();
@@ -106,11 +76,9 @@ export class HomeComponent implements OnInit {
   public isAdmin() {
     return this.userauthService.isLoggedIn();
   }
-  public logout() { this.userauthService.clear(); }
-
-
-
-
+  public logout() {
+    this.userauthService.clear();
+  }
 
   onSelectFile(event) {
     if (event.target.files.length > 0) {
@@ -134,33 +102,33 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
-  NewUser()
-  { 
-
+  NewUser() {
     const formData = new FormData();
 
     const user = this.formuser.value;
 
-
-
     this.formuser.reset();
-
 
     console.log(user);
     formData.append('user', JSON.stringify(user));
     formData.append('file', this.userFile);
-    this.ob=this.userService.createData2(formData).subscribe(data => {
-
-      
-
+    this.ob = this.userService.createData2(formData).subscribe((data) => {
       let ref = document.getElementById('cancel2');
       ref.click();
       this.toastr.success('Notification', 'Succesfully Registered');
-
     });
-
-
   }
-  
+
+  PasswordReset(b: NgForm) {
+
+    this.uss = b.value
+
+
+    this.ob = this.userService.ResetPassword(this.uss).subscribe((data) => {
+      let ref = document.getElementById('cancel');
+      b.reset();
+      ref.click();
+      this.toastr.success('Notification', 'Succesfully Resseted Password');
+    });
+  }
 }

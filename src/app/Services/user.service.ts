@@ -6,34 +6,35 @@ import { User } from '../Models/User';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
-
-
   PATH_OF_API = 'http://localhost:9090';
 
-  public userurl:string='http://localhost:9090'
-
-
+  public userurl: string = 'http://localhost:9090';
 
   //fil classe jwtfilter kol request ye7eb 3la header donc na7na 9ouloulou manech passin chay
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
 
+  constructor(
+    private httpclient: HttpClient,
+    private userAuthService: AuthService
+  ) {}
 
-  constructor(private httpclient:HttpClient,private userAuthService: AuthService) { }
-
-
-  public login(loginData:any) {
+  public login(loginData: any) {
     return this.httpclient.post(this.PATH_OF_API + '/authenticate', loginData, {
       headers: this.requestHeader,
     });
   }
 
-  public Register(loginData:any) {
-    return this.httpclient.post(this.PATH_OF_API + '/registerNewUser', loginData, {
-      headers: this.requestHeader,
-    });
+  public Register(loginData: any) {
+    return this.httpclient.post(
+      this.PATH_OF_API + '/registerNewUser',
+      loginData,
+      {
+        headers: this.requestHeader,
+      }
+    );
   }
 
   public roleMatch(allowedRoles) {
@@ -46,53 +47,56 @@ export class UserService {
           if (userRoles[i].roleName === allowedRoles[j]) {
             isMatch = true;
             return isMatch;
-          } 
+          }
         }
       }
     }
     return false;
   }
 
-
-
-  public GetAllUsers() : Observable<User[]>{
-    return this.httpclient.get<User[]>(environment.URL + '/retrieve-all-users', {
-      responseType: 'json',
-    });
+  public GetAllUsers(): Observable<User[]> {
+    return this.httpclient.get<User[]>(
+      environment.URL + '/retrieve-all-users',
+      {
+        responseType: 'json',
+      }
+    );
   }
-  public AddUserAdminSide(user:User) : Observable<User>{
-    return this.httpclient.post<User>(environment.URL + '/add-user',user, {
+  public AddUserAdminSide(user: User): Observable<User> {
+    return this.httpclient.post<User>(environment.URL + '/add-user', user, {
       responseType: 'json',
     });
   }
 
   deleteUserById(id: String): Observable<any> {
-    return this.httpclient.delete<any>(environment.URL +'/remove-user/'+id);
-
+    return this.httpclient.delete<any>(environment.URL + '/remove-user/' + id);
   }
 
-    updateUser(user: User): Observable<User>{
-    return this.httpclient.put<User>(environment.URL +'/modify-user',user,{
+  updateUser(user: User): Observable<User> {
+    return this.httpclient.put<User>(environment.URL + '/modify-user', user, {
       responseType: 'json',
     });
   }
 
-
-  
-  public GetUserByid(clientid: string) : Observable<User>{
-    return this.httpclient.get<User>(environment.URL + '/retrieve-user/'+clientid );
+  public GetUserByid(clientid: string): Observable<User> {
+    return this.httpclient.get<User>(
+      environment.URL + '/retrieve-user/' + clientid
+    );
   }
 
-  
   createData(formData: FormData): Observable<any> {
-    return this.httpclient.post(`${environment.URL+"/file"}`, formData);
+    return this.httpclient.post(`${environment.URL + '/file'}`, formData);
   }
 
   createData2(formData: FormData): Observable<any> {
-    return this.httpclient.post(`${environment.URL+"/file2"}`, formData,{
+    return this.httpclient.post(`${environment.URL + '/file2'}`, formData, {
       headers: this.requestHeader,
     });
   }
 
-
+  ResetPassword(user: User): Observable<any> {
+    return this.httpclient.post(environment.URL + '/email', user, {
+      headers: this.requestHeader,
+    });
+  }
 }
