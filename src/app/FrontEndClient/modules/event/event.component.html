@@ -1,0 +1,100 @@
+<app-nav-bar></app-nav-bar>
+<main>
+  <!--? Hero Start -->
+  <div class="slider-area2">
+    <div class="slider-height2 d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-12">
+            <div class="hero-cap hero-cap2 text-center pt-70">
+              <h2>Discover Our Events</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Hero End -->
+  <!--? Services Area Start -->
+  <section class="services-area">
+    <!--? Want To work -->
+ 
+    <!-- Want To work End -->
+    <div class="container pt-5">
+      <div class="row">
+        <div class="col-lg-9 posts-list">
+          <div class="row">
+
+            <div class="col-4" *ngFor="let u of listEvent| filter : searchtext">
+              <div class="single-cat single-cat2 text-center mb-50">
+                <div class="cat-icon">
+                    <img src="assets/event.jpg" class="rounded-circle w-100" alt=""/>
+                  
+                </div>
+                <div class="cat-cap">
+                  <h5><a [ngStyle]="{'text-decoration': 'underline'}" class="pt-3">{{u.title}}</a></h5>
+
+                  <h5><a>Date  {{u.date}} </a></h5>
+
+                  <h3>Host  {{u.host}}</h3>
+
+                  <p>Description  <br>{{u.description}}</p>
+
+                </div>
+             
+
+          
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+
+        <div class="col-lg-3">
+          <div class="blog_right_sidebar">
+            <aside class="single_sidebar_widget search_widget">
+              <form action="#">
+                <div class="form-group">
+                  <h5>Search your favorite Event </h5>
+
+
+
+
+
+
+                  <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder='Search Keyword' onfocus="this.placeholder = ''"
+                      onblur="this.placeholder = 'Search Keyword'" name="search" [(ngModel)]="searchtext">
+
+                  </div>
+                </div>
+
+              </form>
+            </aside>
+        
+
+
+
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+  <!-- Services Area End -->
+</main>
+<app-footer></app-footer>
+<!-- Scroll Up -->
+
+
+
+
+

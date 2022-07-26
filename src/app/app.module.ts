@@ -32,6 +32,9 @@ import { PaymentComponent } from './FrontEndClient/modules/payment/payment.compo
 import { ProfilComponent } from './FrontEndClient/modules/profil/profil.component';
 import { DetailProductComponent } from './FrontEndClient/modules/detail-product/detail-product.component';
 import { NgxStarRatingModule } from 'ngx-star-rating';
+import { EventComponent } from './FrontEndClient/modules/event/event.component';
+
+
 
 
 
@@ -53,6 +56,7 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
     PaymentComponent,
     ProfilComponent,
     DetailProductComponent,
+    EventComponent,
 
     
     
@@ -71,7 +75,7 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
     Ng2SearchPipeModule,
     NgxStripeModule.forRoot('pk_test_51LKbfQH5PKYWkTUnQsjOXMbRrZalA3TpxvKyvBnIEuyGZDhMrb47Zn8269SluMeWNkT5lJQuHboCzHk20yXWgZZD00ru3vmOuV'),
 BrowserAnimationsModule,  //yetketbou ken houni héthom
-    ToastrModule.forRoot(),  //yetketbou ken houni héthom
+    ToastrModule.forRoot()  //yetketbou ken houni héthom
   ],
   providers: [AuthGuard,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},UserService], 
   //provide http interceptor fil class authinterceptor w nesta3melouh fil userservice

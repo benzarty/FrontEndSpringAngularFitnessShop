@@ -12,8 +12,15 @@ import { RouterModule } from '@angular/router';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StockComponent } from './stock/stock.component';
 import { DetailComponent } from './stock/detail/detail.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { EventsComponent } from './events/events.component';
+import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
 
-
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -21,7 +28,8 @@ import { DetailComponent } from './stock/detail/detail.component';
     ClientComponent,
     ProduitComponent,
     StockComponent,
-    DetailComponent
+    DetailComponent,
+    EventsComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +38,7 @@ import { DetailComponent } from './stock/detail/detail.component';
     RouterModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,
+    FullCalendarModule,
      // required animations module
       ]
 })
