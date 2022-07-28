@@ -1,60 +1,121 @@
 <div class="app-main" id="main">
-    <div class="container-fluid">
-        <button type="button" class="btn btn-warning mb-5" data-toggle="modal" data-target="#exampleModal">
-           <i class="fa fa-plus-circle
-
-            "> Add Event</i>
-        </button>
-
-        <full-calendar [options]="calendarOptions"></full-calendar>
+  <div class="container-fluid">
+    <button type="button" class="btn btn-warning mb-5" data-toggle="modal" data-target="#exampleModal" id="open">
+      <i class="fa fa-plus-circle"> Add Event</i></button>
 
 
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong" id="openn" hidden>
+      Launch demo modal
+    </button>
+
+
+    <full-calendar [options]="calendarOptions"></full-calendar>
 
 
 
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Event Form</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form  #f="ngForm" (ngSubmit)="postevent(f)">
-                    <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Title:</label>
-                        <input type="text" class="form-control" ngModel #title="ngModel" name="title" >
-                      </div>
 
-                      <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Date:</label>
-                        <input type="date" class="form-control"  ngModel #date="ngModel" name="date">
-                      </div>
 
-                      <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Host:</label>
-                        <input type="text" class="form-control"  ngModel #host="ngModel" name="host">
-                      </div>
-
-                      <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Description:</label>
-                        <textarea class="form-control" rows="3" ngModel #description="ngModel" name="description"></textarea>
-                      </div>
-
-                     
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
-                      </div>
-                    
-                    </form>
-                  </div>
-              
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Event Form</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="formEvent">
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Title:</label>
+                <input type="text" class="form-control" formControlName="title">
               </div>
-            </div>
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Date:</label>
+                <input type="date" class="form-control" formControlName="date">
+              </div>
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Host:</label>
+                <input type="text" class="form-control" formControlName="host">
+              </div>
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Description:</label>
+                <textarea class="form-control" rows="3" formControlName="description"></textarea>
+              </div>
+
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
+                <button type="button" class="btn btn-primary" (click)="addEvent()">Save changes</button>
+              </div>
+
+            </form>
           </div>
 
+        </div>
+      </div>
     </div>
+
+
+
+
+
+    <!-- testtttttttttttt  -->
+
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Event Detail</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form [formGroup]="formEvent2">
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Title:</label>
+                <input type="text" class="form-control" formControlName="title2" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Date:</label>
+                <input type="date" class="form-control" formControlName="date2" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Host:</label>
+                <input type="text" class="form-control" formControlName="host2" readonly>
+              </div>
+
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Description:</label>
+                <textarea class="form-control" rows="3" formControlName="description2" readonly></textarea>
+              </div>
+
+
+          
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
 </div>

@@ -19,4 +19,12 @@ export class EventsService {
   PostEvent(eve: Event): Observable<any> {
     return this.myhttp.post(`${environment.URL + '/Event/add-Event/'}`, eve);
   }
+
+  retrieveEventsbydate(datee:string): Observable<Events> {
+    return this.myhttp.get<Events>(environment.URL + '/Event/retrieveEventsbydate/'+datee);}
+
+
+
+    
+  
 }

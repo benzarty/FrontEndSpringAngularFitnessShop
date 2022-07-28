@@ -3,7 +3,7 @@ export class Events {
 
     Libelle?:string;
 
-    Description?:string;
+    description?:string;
 
     date?:Date;
 

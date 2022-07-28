@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
   formuser: FormGroup;
   public message: string;
   ob: Subscription;
+  result:number=0
+  comment:string
 
   uss: User;
 
@@ -130,5 +132,28 @@ export class HomeComponent implements OnInit {
       ref.click();
       this.toastr.success('Notification', 'Succesfully Resseted Password');
     });
+  }
+
+
+  callcul(g:NgForm)
+  {
+    let height=g.value.heightt;
+    let weight=g.value.weightt;
+
+this.result=weight/(height*height)
+if(this.result<16)
+
+this.comment="Severe Thinness"
+if(this.result>18.5 && this.result<25 )
+this.comment="Normal"
+if(this.result>25 && this.result<30 )
+this.comment="Overweight"
+if(this.result>30 )
+this.comment="Obese "
+
+
+
+
+
   }
 }
