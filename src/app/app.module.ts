@@ -33,6 +33,7 @@ import { ProfilComponent } from './FrontEndClient/modules/profil/profil.componen
 import { DetailProductComponent } from './FrontEndClient/modules/detail-product/detail-product.component';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { EventComponent } from './FrontEndClient/modules/event/event.component';
+import { CoursesComponent } from './FrontEndClient/modules/courses/courses.component';
 
 
 
@@ -57,6 +58,7 @@ import { EventComponent } from './FrontEndClient/modules/event/event.component';
     ProfilComponent,
     DetailProductComponent,
     EventComponent,
+    CoursesComponent,
 
     
     

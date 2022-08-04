@@ -27,12 +27,14 @@
                                                 <li><a [routerLink]="['/Card']">Card</a></li>
 
                                                 <li><a [routerLink]="['/EventFront']">Events </a></li>
+                                                <li><a [routerLink]="['/Offer']">Discover our Offers </a></li>
+
 
 
                                             </ul>
                                         </li>
 
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="#con">Contact</a></li>
                                         <li><a *ngIf="isLoggedIn()" [routerLink]="['/Profil']">Profile</a></li>
 
                                         <li><a *ngIf="isLoggedIn() && userService.roleMatch(['Admin']) "
@@ -174,16 +176,16 @@
 
     <!-- Date Tabs End -->
     <!--? Contact form Start -->
-    <div class="container">
-    <section class="contact-form-main mb-5">
+    <div class="container" id="con">
+    <section class="contact-form-main ">
         <div class="container">
             <div class="row justify-content-end">
-                <div class="col-xl-7 col-lg-7">
+                <div class="col-6">
                     <div class="form-wrapper">
                         <!--Section Tittle  -->
                         <div class="form-tittle">
                             <div class="row ">
-                                <div class="col-lg-11 col-md-10 col-sm-10">
+                                <div class="col-lg-11 col-md-10 col-sm-10 mb-3">
                                     <div class="section-tittle">
                                         <span>Contact Form</span>
                                         <h2>Feel Free to contact with us!</h2>
@@ -192,40 +194,26 @@
                             </div>
                         </div>
                         <!--End Section Tittle  -->
-                        <form id="contact-form" action="#" method="POST">
+                        <form [formGroup]="formMessage" (ngSubmit)="SendMessage(bocc.value)">
                             <div class="row">
-                                <div class="col-lg-6 col-md-6">
+
+                                <div class="form-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Your Mail" #bocc>
+                                </div>
+
+                                <div class="form-group">
                                     <div class="form-box user-icon mb-30">
-                                        <input type="text" name="name" placeholder="Name">
+                                        <input type="text" name="name" class="form-control" placeholder="subject" formControlName="subject">
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-box email-icon mb-30">
-                                        <input type="text" name="email" placeholder="Phone">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 mb-30">
-                                    <div class="select-itms">
-                                        <select name="select" id="select2">
-                                            <option value="">Boxing</option>
-                                            <option value="">saiful islam</option>
-                                            <option value="">Arafath Miya</option>
-                                            <option value="">Shakil Miya</option>
-                                            <option value="">Tamim Sharker</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="form-box subject-icon mb-30">
-                                        <input type="Email" name="subject" placeholder="Email">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
+                              
+        
+                                <div class="form-group">
                                     <div class="form-box message-icon mb-65">
-                                        <textarea name="message" id="message" placeholder="Message"></textarea>
+                                        <textarea name="message" class="form-control" placeholder="Message" formControlName="description"></textarea>
                                     </div>
                                     <div class="submit-info">
-                                        <button class="btn" type="submit">Send Message</button>
+                                        <button class="btn float-right" type="submit">Send Message</button>
                                     </div>
                                 </div>
                             </div>
@@ -235,11 +223,11 @@
             </div>
         </div>
         <!-- contact left Img-->
-        <div class="from-left d-none d-lg-block">
-            <img src="assets/Front/img/gallery/contact_form.png" alt="">
+        <div class="from-left d-none d-lg-block col-6">
+            <img src="assets/Front/img/gallery/contact_form.png" style="height: 50%;" alt="">
         </div>
     </section>
-</div>
+    </div>
     <!-- Contact form End -->
     <!--? Blog Area Start -->
 

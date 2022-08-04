@@ -7,6 +7,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { HomeComponent } from './FrontEndClient/home.component';
 import { CardDetailsComponent } from './FrontEndClient/modules/card-details/card-details.component';
 import { CardComponent } from './FrontEndClient/modules/card/card.component';
+import { CoursesComponent } from './FrontEndClient/modules/courses/courses.component';
 import { DetailProductComponent } from './FrontEndClient/modules/detail-product/detail-product.component';
 import { EventComponent } from './FrontEndClient/modules/event/event.component';
 import { ProductsComponent } from './FrontEndClient/modules/products/products.component';
@@ -24,6 +25,12 @@ const routes: Routes = [
   {
     path: 'Card',
     component: CardComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['Admin'] },
+  },
+  {
+    path: 'Offer',
+    component: CoursesComponent,
     canActivate: [AuthGuard],
     data: { roles: ['Admin'] },
   },

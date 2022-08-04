@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
 import { User } from '../Models/User';
 import { AuthService } from '../Services/auth.service';
+import { MessagesService } from '../Services/messages.service';
 import { UserService } from '../Services/user.service';
 
 @Component({
@@ -18,10 +19,12 @@ export class HomeComponent implements OnInit {
   imgURL: any;
   public imagePath;
   formuser: FormGroup;
+
+  formMessage: FormGroup;
   public message: string;
   ob: Subscription;
-  result:number=0
-  comment:string
+  result: number = 0;
+  comment: string;
 
   uss: User;
 
@@ -30,11 +33,14 @@ export class HomeComponent implements OnInit {
     private userauthService: AuthService,
     private route: Router,
     private toastr: ToastrService,
-    private formbuider: FormBuilder
+    private formbuider: FormBuilder,
+    private messageservice:MessagesService
   ) {}
 
   ngOnInit(): void {
     this.init();
+
+    this.initMessage();
   }
 
   init() {
@@ -50,6 +56,13 @@ export class HomeComponent implements OnInit {
       fileName: ['', [Validators.required]],
 
       email: ['', [Validators.required]],
+    });
+  }
+
+  initMessage() {
+    this.formMessage = this.formbuider.group({
+      subject: ['', [Validators.required]],
+      description: ['', [Validators.required]],
     });
   }
 
@@ -122,9 +135,7 @@ export class HomeComponent implements OnInit {
   }
 
   PasswordReset(b: NgForm) {
-
-    this.uss = b.value
-
+    this.uss = b.value;
 
     this.ob = this.userService.ResetPassword(this.uss).subscribe((data) => {
       let ref = document.getElementById('cancel');
@@ -134,26 +145,34 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  callcul(g: NgForm) {
+    let height = g.value.heightt;
+    let weight = g.value.weightt;
 
-  callcul(g:NgForm)
-  {
-    let height=g.value.heightt;
-    let weight=g.value.weightt;
-
-this.result=weight/(height*height)
-if(this.result<16)
-
-this.comment="Severe Thinness"
-if(this.result>18.5 && this.result<25 )
-this.comment="Normal"
-if(this.result>25 && this.result<30 )
-this.comment="Overweight"
-if(this.result>30 )
-this.comment="Obese "
+    this.result = weight / (height * height);
+    if (this.result < 16) this.comment = 'Severe Thinness';
+    if (this.result > 18.5 && this.result < 25) this.comment = 'Normal';
+    if (this.result > 25 && this.result < 30) this.comment = 'Overweight';
+    if (this.result > 30) this.comment = 'Obese ';
+  }
 
 
+  SendMessage(boc:any) {  
+    console.log(boc);
+    console.log(this.formMessage.value);
 
+    this.ob = this.messageservice.PostMessage(this.formMessage.value,boc).subscribe((data) => {
+      if(data==true)
+      {
+      this.formMessage.reset();
+      this.toastr.success('Notification', 'Succesfully Send Message');
+      }
+      else 
+      this.toastr.warning('Notification', 'The Mail you provided is not a valid email address');
 
+    });
 
+    
+    console.log(boc);
   }
 }

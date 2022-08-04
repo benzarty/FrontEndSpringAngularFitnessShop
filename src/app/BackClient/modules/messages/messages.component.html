@@ -1,0 +1,242 @@
+<div class="app-main" id="main">
+    <!-- begin container-fluid -->
+    <div class="container-fluid">
+        <!-- begin row -->
+        <div class="row">
+            <div class="col-md-12 m-b-30">
+                <!-- begin page title -->
+                <div class="d-block d-sm-flex flex-nowrap align-items-center">
+                    <div class="page-title mb-2 mb-sm-0">
+                        <h1>Mail</h1>
+                    </div>
+                    <div class="ml-auto d-flex align-items-center">
+                        <nav>
+                            <ol class="breadcrumb p-0 m-b-0">
+                                <li class="breadcrumb-item">
+                                    <a href="index.html"><i class="ti ti-home"></i></a>
+                                </li>
+                                <li class="breadcrumb-item active text-primary" aria-current="page">Mail</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <!-- end page title -->
+            </div>
+        </div>
+        <!-- end row -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card card-statistics mail-contant">
+                    <div class="card-body p-0">
+                        <div class="row no-gutters">
+                            <div class="col-md-4 col-xxl-2 col-md-4">
+                                <div class="mail-sidebar">
+                                    <div class="row justify-content-center">
+                                        <div class="col-12">
+                                            <div class="text-center mail-sidebar-title px-4">
+                                                <button class="btn btn-primary btn-block py-3 font-weight-bold font-18"
+                                                    data-toggle="modal" data-target="#exampleModal">Compose
+                                                    <i class="fa fa-plus pl-2"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="px-4 py-4">
+                                                <ul class="pl-0">
+                                                    <li class="py-2">
+                                                        <a href="javascript:void(0)">
+                                                            <span class="nav align-items-center">
+                                                                <span>
+                                                                    <i class="fa fa-envelope-o text-primary pr-4"></i>
+                                                                </span>
+                                                                <span>
+                                                                    <span>Inbox</span>
+                                                                </span>
+                                                                <span class="nav-item ml-auto text-right">
+                                                                    <span
+                                                                        class="badge badge-pill badge-primary float-right">{{messagetab.length}}</span>
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </li>
+
+
+
+
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8  col-xxl-4 border-md-t">
+                                <div class="mail-content  border-right border-n h-100">
+                                    <div class="mail-search border-bottom">
+                                        <div class="row align-items-center mx-0">
+                                            <div class="col-12">
+                                                <div class="form-group pt-3">
+                                                    <input type="text" class="form-control" id="search"
+                                                        placeholder="Search..">
+                                                    <i class="fa fa-search"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mail-msg scrollbar scroll_dark">
+
+
+
+                                        <div class="mail-msg-item" *ngFor="let r of messagetab">
+                                            <a href="javascript:void(0)">
+                                                <div class="media align-items-center">
+                                                    <div class="mr-3">
+                                                        <div class="bg-img">
+                                                            <i class="zmdi zmdi-email fa-lg"></i>
+                                                        </div>
+                                                    </div>
+                                                    <div class="w-100">
+                                                        <div class="mail-msg-item-titel justify-content-between">
+                                                            <p>{{r.messageClient.userFirstName}}
+                                                                {{r.messageClient.userLastName}}</p>
+
+
+
+
+                                                            <p class="d-none d-xl-block">{{ r.dateEnvoi |
+                                                                date:'shortTime'}}</p>
+                                                        </div>
+                                                        <h5 (click)="Test(r.idMessage)" class="mb-0 my-2">{{r.subject}}
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-6 border-t border-xxl-t" *ngFor="let r of listInitial">
+                                <div class="mail-chat py-5 px-5">
+                                    <div class="media align-items-center">
+                                        <div class="bg-img mr-3">
+
+                                            <i class="zmdi zmdi-email-open fa-lg"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="mb-0">{{r.subject}}</h4>
+                                            <p>{{r.dateEnvoi | date}}</p>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <p class="mb-5">{{r.description}}</p>
+
+
+                                    </div>
+                                </div>
+                                <div class="d-md-flex px-5 py-4">
+                                    <div class="flex-fill align-items-center">
+                                        <div class="d-flex">
+                                            <i class="ti ti-clip pr-3 font-22"></i>
+                                            <p class="pr-3 font-weight-bold">Wireframe</p>
+                                            <p>(220.MB)</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex-fill text-left text-md-right"><a href="javascript:void(0)"
+                                            class="text-primary"><i
+                                                class="ti ti-download pr-2"></i><span>Download</span></a></div>
+                                </div>
+
+                                <form #f="ngForm" (ngSubmit)="postreply(f,mailmail)">
+
+                                    <div class="bg-light mail-f px-4 py-3">
+                                        <div class="py-2 bg-white px-4 py-3 d-flex justify-content-between">
+                                            <p>Click here to <a href="#editer" data-toggle="collapse"
+                                                    class="text-primary px-1">Reply</a></p>
+                                            <a href="javascript:void(0)" class="text-primary"></a>
+                                        </div>
+
+                                        <div class="collapse" id="editer">
+                                            <div class="form-group">
+                                                <textarea class="form-control mt-3" id="exampleFormControlTextarea1"
+                                                    rows="3" placeholder="Type here..." ngModel #description="ngModel"
+                                                    name="description"></textarea>
+                                                <input type="text" value="{{r.messageClient.email}}" #mailmail hidden>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex align-items-center justify-content-between py-2">
+                                            <div>
+                                                <ul class="nav">
+                                                    <li (click)="Delete(r.idMessage)" class="nav-item pr-3"><a
+                                                            href="javascript:void(0)"><i
+                                                                class="zmdi zmdi-delete font-20"></i></a></li>
+
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <button class="btn btn-primary"><span>Send</span> <i
+                                                        class="fa fa-paper-plane"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end container-fluid -->
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Mail Form</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form #g="ngForm" (ngSubmit)="postadd(g)">
+
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Subject:</label>
+                        <input type="text" class="form-control" ngModel #subject="ngModel" name="subject">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">To Who:</label>
+                        <input type="text" class="form-control" ngModel #towho="ngModel" name="towho">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Description</label>
+                        <textarea class="form-control" ngModel #description="ngModel" name="description"></textarea>
+                    </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close">Close</button>
+                <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+        </form>
+
+        </div>
+    </div>
+</div>

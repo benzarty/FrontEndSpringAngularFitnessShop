@@ -12,16 +12,15 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-produit',
   templateUrl: './produit.component.html',
-  styleUrls: ['./produit.component.css']
+  styleUrls: ['./produit.component.css'],
 })
 export class ProduitComponent implements OnInit, OnDestroy {
-
-  searchtext:any
+  searchtext: any;
 
   listeproduit: Produit[];
   formproduit: FormGroup;
 
-  listestock:Stock[];
+  listestock: Stock[];
   ob: Subscription;
   userFile;
   public message: string;
@@ -30,19 +29,20 @@ export class ProduitComponent implements OnInit, OnDestroy {
   showaddButton: boolean;
   showupdateButton: boolean;
 
-  constructor(public produitservice: ProduitService, private formbuider: FormBuilder, private toastr: ToastrService,private _stockService:StockService) { }
+  constructor(
+    public produitservice: ProduitService,
+    private formbuider: FormBuilder,
+    private toastr: ToastrService,
+    private _stockService: StockService
+  ) {}
   ngOnDestroy(): void {
-
     this.ob.unsubscribe();
-
-
   }
 
   ngOnInit(): void {
     this.infoForm();
     this.getAllProducts();
     this.getAllStock();
-
   }
 
   infoForm() {
@@ -54,20 +54,15 @@ export class ProduitComponent implements OnInit, OnDestroy {
       prixUnitaire: ['', [Validators.required]],
       fileName: ['', [Validators.required]],
       description: ['', [Validators.required]],
-
-      
     });
   }
   getAllProducts() {
-    this.ob=this.produitservice.getAllProduits().subscribe(res => {
+    this.ob = this.produitservice.getAllProduits().subscribe((res) => {
       this.listeproduit = res;
     });
   }
 
-
   goToDeleteProduct(id: number) {
-
-
     Swal.fire({
       title: 'Are you sure want to remove?',
       text: 'You will not be able to recover this record!',
@@ -76,29 +71,16 @@ export class ProduitComponent implements OnInit, OnDestroy {
       confirmButtonText: 'Yes, delete it!',
       cancelButtonText: 'No, keep it',
     }).then((result) => {
-
-
       if (result.value) {
-        Swal.fire(
-          'Deleted!',
-          'Your record has been deleted.',
-          'success'
-        );
+        Swal.fire('Deleted!', 'Your record has been deleted.', 'success');
 
-        this.ob = this.produitservice.deleteProduct(id).subscribe(
-
-          res => {
-            this.getAllProducts();
-
-          }
-        )
+        this.ob = this.produitservice.deleteProduct(id).subscribe((res) => {
+          this.getAllProducts();
+        });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire('Cancelled', 'Your record is safe :)', 'error');
       }
     });
-
-
-
   }
 
   addprod(idStock) {
@@ -106,25 +88,28 @@ export class ProduitComponent implements OnInit, OnDestroy {
 
     const produit = this.formproduit.value;
 
-
-
     this.formproduit.reset();
-
 
     console.log(produit);
     formData.append('produit', JSON.stringify(produit));
     formData.append('file', this.userFile);
-    this.ob=this.produitservice.createData(formData,idStock).subscribe(data => {
+    this.ob = this.produitservice
+      .createData(formData, idStock)
+      .subscribe((data) => {
+        if (data == true) {
+          this.getAllProducts();
 
-      this.getAllProducts();
-
-      let ref = document.getElementById('cancel');
-      ref?.click();
-      this.toastr.success('Notification', 'Succesfully Login');
-
-    });
-
-
+          let ref = document.getElementById('cancel');
+          ref?.click();
+          this.toastr.success('Notification', 'Succesfully Added Product');
+        }
+        if (data == false) {
+          this.toastr.warning(
+            'Notification',
+            'This stock is full,try another '
+          );
+        }
+      });
   }
   onSelectFile(event) {
     if (event.target.files.length > 0) {
@@ -134,7 +119,7 @@ export class ProduitComponent implements OnInit, OnDestroy {
 
       var mimeType = event.target.files[0].type;
       if (mimeType.match(/image\/*/) == null) {
-        this.message = "Only images are supported.";
+        this.message = 'Only images are supported.';
         return;
       }
 
@@ -144,17 +129,13 @@ export class ProduitComponent implements OnInit, OnDestroy {
       reader.readAsDataURL(file);
       reader.onload = (_event) => {
         this.imgURL = reader.result;
-      }
+      };
     }
-
-
   }
 
   EditUser(row: Produit) {
-
     this.showaddButton = false;
-    this.showupdateButton = true; 
-
+    this.showupdateButton = true;
 
     this.formproduit.controls['idProduit'].setValue(row.idProduit);
     this.formproduit.controls['code'].setValue(row.code);
@@ -162,19 +143,9 @@ export class ProduitComponent implements OnInit, OnDestroy {
     this.formproduit.controls['libelle'].setValue(row.libelle);
 
     this.formproduit.controls['prixUnitaire'].setValue(row.prixUnitaire);
-      
+
     this.formproduit.controls['description'].setValue(row.description);
-
-    
-
-    
-
-
-
   }
-
-
-
 
   clickAddButtonTest() {
     this.formproduit.reset();
@@ -182,12 +153,9 @@ export class ProduitComponent implements OnInit, OnDestroy {
     this.showupdateButton = false;
   }
 
-
-  getAllStock(){
-    this.ob=this._stockService.getAllStock().subscribe(res => {
+  getAllStock() {
+    this.ob = this._stockService.getAllStock().subscribe((res) => {
       this.listestock = res;
-
     });
   }
-
 }

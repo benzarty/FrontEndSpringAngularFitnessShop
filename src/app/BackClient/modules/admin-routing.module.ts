@@ -4,7 +4,9 @@ import { AuthGuard } from 'src/app/Auth/auth.guard';
 import { ForbiddenComponent } from 'src/app/forbidden/forbidden.component';
 import { LayoutComponent } from '../dashboard/layout/layout.component';
 import { ClientComponent } from './client/client.component';
+import { CoursesComponent } from './courses/courses.component';
 import { EventsComponent } from './events/events.component';
+import { MessagesComponent } from './messages/messages.component';
 import { ProduitComponent } from './produit/produit.component';
 import { DetailComponent } from './stock/detail/detail.component';
 import { StockComponent } from './stock/stock.component';
@@ -47,7 +49,19 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: { roles: ['Admin'] },
   },
+  {
+    path: 'MessagesBack',
+    component: MessagesComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['Admin'] },
+  },
  
+  {
+    path: 'coursesBackground',
+    component: CoursesComponent,
+    canActivate: [AuthGuard],
+    data: { roles: ['Admin'] },
+  },
 
   {
     path: '**',

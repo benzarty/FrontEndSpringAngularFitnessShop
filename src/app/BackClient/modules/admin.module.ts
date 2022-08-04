@@ -15,7 +15,9 @@ import { DetailComponent } from './stock/detail/detail.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { EventsComponent } from './events/events.component';
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
+import interactionPlugin from '@fullcalendar/interaction';
+import { CoursesComponent } from './courses/courses.component';
+import { MessagesComponent } from './messages/messages.component'; // a plugin!
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -30,6 +32,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     StockComponent,
     DetailComponent,
     EventsComponent,
+    CoursesComponent,
+    MessagesComponent,
   ],
   imports: [
     CommonModule,
