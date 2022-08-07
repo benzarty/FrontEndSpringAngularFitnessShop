@@ -28,4 +28,19 @@ export class FactureService {
     }
 
 
+
+    getNbFactureLastMonth() : Observable<number>{
+      return this.myhttp.get<number>(environment.URL+"/facture/getNbFactureLastMonth");
+    }
+  
+    getChiffreaffaireLastMonth() : Observable<number>{
+      return this.myhttp.get<number>(environment.URL+"/facture/getChiffreaffaireLastMonth");
+    }
+  
+    getChiffreaffairetoday() : Observable<number>{
+      return this.myhttp.get<number>(environment.URL+"/facture/getChiffreaffairetoday");
+    }
+    
+
+
 }

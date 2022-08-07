@@ -1,9 +1,15 @@
 <aside class="app-navbar">
     <!-- begin sidebar-nav -->
     <div class="sidebar-nav scrollbar scroll_light">
+
+     
       <ul class="metismenu " id="sidebarNav">
+
+
+        <li><a  aria-expanded="false"><span
+          class="nav-title"> Bonjour {{usertab.userFirstName}}</span></a></li>
    
-        <li><a [routerLink]="['/DashBoard/Client']" aria-expanded="false"><i class="fas fa-users"></i><span
+        <li><a [routerLink]="['/DashBoard/Client']" aria-expanded="false"><i class="dashicons dashicons-editor-help"></i><span
           class="nav-title">Gerer client</span></a></li>
 
         <li><a [routerLink]="['/DashBoard/Produit']" aria-expanded="false"><i class="dashicons dashicons-editor-help"></i><span

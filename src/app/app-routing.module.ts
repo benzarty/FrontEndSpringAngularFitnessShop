@@ -16,6 +16,7 @@ import { ProfilComponent } from './FrontEndClient/modules/profil/profil.componen
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'Home', component: HomeComponent, pathMatch: 'full' },
+
   {
     path: 'Products',
     component: ProductsComponent,

@@ -55,7 +55,8 @@
                 </div>
 
                 <div class="btn btn-warning mb-2">
-                  <a [routerLink]="['/DetailProduit',u.idProduit]">Click For More Info <i class="ti-arrow-right"></i></a>
+                  <a [routerLink]="['/DetailProduit',u.idProduit]">Click For More Info <i
+                      class="ti-arrow-right"></i></a>
                 </div>
 
 
@@ -174,11 +175,13 @@
                 <input type="number" class="form-control" readonly formControlName="qte" name="qte"
                   [value]=[this.qte] />
                 <div class="mt-3">
-                  <span class="contact-info__icon"><i (click)="minus()" class="fa fa-minus-square"></i></span>
-                  <span class="contact-info__icon"><i (click)="Plus()" class="fa fa-plus-square float-right"></i></span>
+                  <span class="contact-info__icon"><i (click)="minus()" class="fe fe-minus-square
+
+                    "> </i></span>
+                  <span class="contact-info__icon"><i (click)="Plus()" class="fe fe-plus-square
+                    float-right"></i></span>
                 </div>
               </div>
-
             </div>
 
             <div class="text-center">

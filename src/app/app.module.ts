@@ -34,9 +34,7 @@ import { DetailProductComponent } from './FrontEndClient/modules/detail-product/
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { EventComponent } from './FrontEndClient/modules/event/event.component';
 import { CoursesComponent } from './FrontEndClient/modules/courses/courses.component';
-
-
-
+import { OAuthModule } from 'angular-oauth2-oidc';
 
 
 
@@ -59,10 +57,7 @@ import { CoursesComponent } from './FrontEndClient/modules/courses/courses.compo
     DetailProductComponent,
     EventComponent,
     CoursesComponent,
-
-    
-    
-      ],
+  ],
   imports: [
     NgxSliderModule,
     NgxPrintModule,
@@ -73,15 +68,29 @@ import { CoursesComponent } from './FrontEndClient/modules/courses/courses.compo
     ReactiveFormsModule,
     RouterModule,
     NgxStarRatingModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+          allowedUrls: ['http://localhost:4200'],
+          sendAccessToken: true
+      }
+  }),
     AdminModule,
     Ng2SearchPipeModule,
-    NgxStripeModule.forRoot('pk_test_51LKbfQH5PKYWkTUnQsjOXMbRrZalA3TpxvKyvBnIEuyGZDhMrb47Zn8269SluMeWNkT5lJQuHboCzHk20yXWgZZD00ru3vmOuV'),
-BrowserAnimationsModule,  //yetketbou ken houni héthom
-    ToastrModule.forRoot()  //yetketbou ken houni héthom
+    NgxStripeModule.forRoot(
+      'pk_test_51LKbfQH5PKYWkTUnQsjOXMbRrZalA3TpxvKyvBnIEuyGZDhMrb47Zn8269SluMeWNkT5lJQuHboCzHk20yXWgZZD00ru3vmOuV'
+    ),
+    BrowserAnimationsModule, //yetketbou ken houni héthom
+    ToastrModule.forRoot(), //yetketbou ken houni héthom
   ],
-  providers: [AuthGuard,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},UserService], 
+  providers: [
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    UserService,
+  
+    
+  ],
   //provide http interceptor fil class authinterceptor w nesta3melouh fil userservice
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

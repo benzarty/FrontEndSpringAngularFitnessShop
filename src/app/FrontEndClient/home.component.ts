@@ -1,3 +1,4 @@
+import jwt_decode  from 'jwt-decode';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,13 +20,14 @@ export class HomeComponent implements OnInit {
   imgURL: any;
   public imagePath;
   formuser: FormGroup;
+  usertab: User;
 
   formMessage: FormGroup;
   public message: string;
   ob: Subscription;
   result: number = 0;
   comment: string;
-
+  token: any;
   uss: User;
 
   constructor(
@@ -34,13 +36,16 @@ export class HomeComponent implements OnInit {
     private route: Router,
     private toastr: ToastrService,
     private formbuider: FormBuilder,
-    private messageservice:MessagesService
+    private messageservice:MessagesService,
+  
+    
   ) {}
 
   ngOnInit(): void {
     this.init();
 
     this.initMessage();
+    this.getUser();
   }
 
   init() {
@@ -174,5 +179,29 @@ export class HomeComponent implements OnInit {
 
     
     console.log(boc);
+  }
+
+  getUser() {
+    this.token = this.userauthService.getToken();
+
+    const decoded = this.getDecodedAccessToken(this.token);
+
+    const username = decoded.sub;
+
+    this.ob = this.userService.GetUserByid(username).subscribe((res) => {
+      this.usertab = res;
+
+    })
+
+
+  }
+
+
+  getDecodedAccessToken(token: string): any {
+    try {
+      return jwt_decode(token);
+    } catch (Error) {
+      return null;
+    }
   }
 }
