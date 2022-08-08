@@ -49,7 +49,7 @@
                                             (click)="logout()">Logout</a>
 
                                          
-                                            <li><a>Bonjour {{usertab.userFirstName}}</a></li>
+                                            <li><a *ngIf="isLoggedIn()">Bonjour {{usertab.userFirstName}}</a></li>
 
 
                                     </ul>

@@ -34,7 +34,9 @@ import { DetailProductComponent } from './FrontEndClient/modules/detail-product/
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { EventComponent } from './FrontEndClient/modules/event/event.component';
 import { CoursesComponent } from './FrontEndClient/modules/courses/courses.component';
-import { OAuthModule } from 'angular-oauth2-oidc';
+
+
+
 
 
 
@@ -68,12 +70,6 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     ReactiveFormsModule,
     RouterModule,
     NgxStarRatingModule,
-    OAuthModule.forRoot({
-      resourceServer: {
-          allowedUrls: ['http://localhost:4200'],
-          sendAccessToken: true
-      }
-  }),
     AdminModule,
     Ng2SearchPipeModule,
     NgxStripeModule.forRoot(
@@ -86,7 +82,6 @@ import { OAuthModule } from 'angular-oauth2-oidc';
     AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     UserService,
-  
     
   ],
   //provide http interceptor fil class authinterceptor w nesta3melouh fil userservice

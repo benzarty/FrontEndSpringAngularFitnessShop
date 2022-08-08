@@ -45,7 +45,8 @@ export class HomeComponent implements OnInit {
     this.init();
 
     this.initMessage();
-    this.getUser();
+
+    
   }
 
   init() {
@@ -80,6 +81,8 @@ export class HomeComponent implements OnInit {
         let ref = document.getElementById('cancel');
         ref?.click();
         this.toastr.success('Notification', 'Succesfully Login');
+
+        this.getUser();
       },
       error: (err) => {
         console.error(err);
