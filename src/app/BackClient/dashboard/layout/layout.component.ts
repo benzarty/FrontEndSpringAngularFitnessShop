@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FactureService } from 'src/app/Services/facture.service';
-
-
-
+import { Chart, registerables } from 'node_modules/chart.js';
+import { ReviewsService } from 'src/app/Services/reviews.service';
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-layout',
@@ -13,23 +13,23 @@ export class LayoutComponent implements OnInit {
   Chiffre: number;
   Chiffre2: number;
   Chiffre3: number;
+  myChart: any;
 
+  rev1: Number;
+  rev2: Number;
 
-  
+  rev3: Number;
+
+  rev4: Number;
+
+  rev5: Number;
 
   WeatherData: any;
-  constructor(private us: FactureService) {
-
-
-
-
-
-
-
-
-
-
-  }
+  constructor(
+    private us: FactureService,
+    private elementRef: ElementRef,
+    private Revservice: ReviewsService
+  ) {}
 
   ngOnInit(): void {
     this.WeatherData = {
@@ -41,6 +41,75 @@ export class LayoutComponent implements OnInit {
     this.getNbFactureLastMonth();
     this.getChiffreaffaireLastMonth();
     this.getChiffreaffairetoday();
+
+    let htmlRef = this.elementRef.nativeElement.querySelector(`#myChart`);
+
+    this.Revservice.getReviews1().subscribe((res) => {
+      this.rev1 = res;
+
+      this.Revservice.getReviews2().subscribe((res) => {
+        this.rev2 = res;
+
+        this.Revservice.getReviews3().subscribe((res) => {
+          this.rev3 = res;
+
+          this.Revservice.getReviews4().subscribe((res) => {
+            this.rev4 = res;
+
+            this.Revservice.getReviews5().subscribe((res) => {
+              this.rev5 = res;
+
+              const myChart = new Chart(htmlRef, {
+                type: 'bar',
+                data: {
+                  labels: [
+                    'Review 1',
+                    'Review 2',
+                    'Review 3',
+                    'Review 4',
+                    'Review 5',
+                  ],
+                  datasets: [
+                    {
+                      label: 'People Reviews',
+                      data: [
+                        this.rev1,
+                        this.rev2,
+                        this.rev3,
+                        this.rev4,
+                        this.rev5,
+                      ],
+                      backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                      ],
+                      borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                      ],
+                      borderWidth: 1,
+                    },
+                  ],
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true,
+                    },
+                  },
+                },
+              });
+            });
+          });
+        });
+      });
+    });
   }
 
   getWeatherData() {
@@ -93,7 +162,4 @@ export class LayoutComponent implements OnInit {
       this.Chiffre3 = res;
     });
   }
-
-  
-  
 }

@@ -22,4 +22,22 @@ export class ReviewsService {
   }
 
 
+
+  getReviews1() : Observable<Number>{
+    return this.myhttp.get<Number>(environment.URL+"/Reviews/retrievenumbers1");
+  }
+  getReviews2() : Observable<Number>{
+    return this.myhttp.get<Number>(environment.URL+"/Reviews/retrievenumbers2");
+  }
+  getReviews3() : Observable<Number>{
+    return this.myhttp.get<Number>(environment.URL+"/Reviews/retrievenumbers3");
+  }
+  getReviews4() : Observable<Number>{
+    return this.myhttp.get<Number>(environment.URL+"/Reviews/retrievenumbers4");
+  }
+  getReviews5() : Observable<Number>{
+    return this.myhttp.get<Number>(environment.URL+"/Reviews/retrievenumbers5");
+  }
+
+
 }
