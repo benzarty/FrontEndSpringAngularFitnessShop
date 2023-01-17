@@ -70,6 +70,8 @@ this.ob = this.reviewservice.PostReview(f.value,v).subscribe((res) => {
   f.reset();
   this.toastr.success('Notification', 'Youe Review has been succesfully submitted');
 
+  this.getReviewByIdProduit(v);
+
 
 });
     

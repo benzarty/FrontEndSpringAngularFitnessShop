@@ -80,8 +80,7 @@
                                 <th scope="col">Phone</th>
 
 
-                                <th scope="col">Roles</th>
-                                <th scope="col">Active</th>
+                                <!-- <th scope="col">Roles</th> -->
 
 
                                 <th scope="col">Edit & Delete</th>
@@ -102,13 +101,11 @@
                                 <td>{{c.userName}}</td>
                                 <td>{{c.email}}</td>
                                 <td>{{c.phone}}</td>
-                                <td  *ngFor="let c of c.role">
+                                <!-- <td  *ngFor="let c of c.role">
                                 {{c.roleName}}
-                                </td>
+                                </td> -->
 
 
-                                <td *ngIf="c.active==true"><a  class="dot"></a><span>Active</span></td>
-                                 <td *ngIf="c.active==false"><a class="dot bg-danger"></a><span>Non Active</span></td> 
                                 <td>
                                     <a (click)="EditUser(c)"  class="btn btn-icon btn-outline-primary btn-round mr-2 mb-2 mb-sm-0 " data-toggle="modal" data-target="#exampleModal"><i class="ti ti-pencil"></i></a>
                                     <a (click)="goToDeleteUsers(c.userName)"  class="btn btn-icon btn-outline-danger btn-round" ><i class="ti ti-close"></i></a>

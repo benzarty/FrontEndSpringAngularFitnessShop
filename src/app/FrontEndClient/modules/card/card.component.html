@@ -26,10 +26,9 @@
             <div class="page-content container pt-5 pb-5">
                 <div class="page-header text-blue-d2">
                     <h1 class="page-title text-secondary-d1">
-                        Invoice
+                        
                         <small class="page-info">
-                            <i class="fa fa-angle-double-right text-80"></i>
-                            ID: {{FactureClient.idFacture}}
+                            ID Card : {{FactureClient.idFacture}}
                         </small>
                     </h1>
 
@@ -39,14 +38,14 @@
                                 <!-- <i class="mr-1 fa fa-print text-primary-m1 text-120 w-2" ></i>
                     Print -->
                                 <button class="btn btn-white text-primary-m1" printSectionId="demo" ngxPrint><i
-                                        class="fa fa-print"></i> PRINT</button>
+                                        class="fa fa-print"></i> </button>
 
 
                             </a>
 
                             <a class="btn bg-white btn-light mx-1px text-95" data-title="PDF">
                                 <button class="btn btn-white text-danger-m1 " (click)="makePDF()"><i
-                                        class="fa fa-print"></i> EXPORT</button>
+                                        class="fa fa-paper-plane"></i> </button>
 
                             </a>
                         </div>
@@ -91,28 +90,25 @@
                                 <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
                                     <hr class="d-sm-none" />
                                     <div class="text-grey-m2">
-                                        <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
-                                            Invoice
-                                        </div>
+                                 
 
-                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                        <div class="my-2"> <span
                                                 class="text-600 text-90">ID:</span> {{FactureClient.idFacture}}</div>
 
-                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                        <div class="my-2"> <span
                                                 class="text-600 text-90">Issue Date:</span>
                                             {{FactureClient.datefacture}}</div>
 
-                                        <div *ngIf="FactureClient.active" class="my-2"><i
-                                                class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
-                                                class="text-600 text-90">Status:</span> <span
+                                        <div *ngIf="FactureClient.active" class="my-2"> <span
+                                                class="text-600 text-90 ">Status:</span> <span
                                                 class="badge badge-warning badge-pill px-25">Unpaid</span></div>
 
 
-                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                        <div class="my-2"> <span
                                                 class="text-600 text-90">Payment Method:</span>
                                             {{FactureClient.modepaiement}}</div>
 
-                                        <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                                        <div class="my-2"> <span
                                                 class="text-600 text-90">Discount Amount:</span>
                                             {{FactureClient.montantRemise}}</div>
 

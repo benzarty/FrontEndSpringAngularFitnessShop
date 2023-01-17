@@ -157,11 +157,15 @@ export class HomeComponent implements OnInit {
     let height = g.value.heightt;
     let weight = g.value.weightt;
 
+    
+
     this.result = weight / (height * height);
     if (this.result < 16) this.comment = 'Severe Thinness';
     if (this.result > 18.5 && this.result < 25) this.comment = 'Normal';
     if (this.result > 25 && this.result < 30) this.comment = 'Overweight';
     if (this.result > 30) this.comment = 'Obese ';
+
+    console.log(this.result);
   }
 
 
@@ -206,5 +210,14 @@ export class HomeComponent implements OnInit {
     } catch (Error) {
       return null;
     }
+  }
+
+  getColor(){
+
+    return this.result > 0 ? "red" : "red";
+  }
+  getColor2(){
+
+    return this.result > 0 ? "green" : "green";
   }
 }
